@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
 import { IndexComponent } from './components/index/index.component';
 
 
@@ -11,7 +15,9 @@ import { IndexComponent } from './components/index/index.component';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    MatIconModule,
+    MatButtonModule,
   ]
 })
 export class MainModule { }
