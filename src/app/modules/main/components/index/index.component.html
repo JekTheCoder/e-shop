@@ -3,12 +3,12 @@
         <h1>E-Shop</h1>
     </div>
     <div class="">
-        <div class="input-container">
+        <div class="input-container" [@inputAnim]="!opened? 'opened':'closed' " style="overflow:hidden;">
             <input type="text">
         </div>
         <div class="custom-button">
-            <button mat-mini-fab>
-                <mat-icon>search</mat-icon>
+            <button mat-mini-fab class="custom-c" [@buttonAnim]="!opened? 'open':'closed' " (click)="opened = !opened" >
+                <mat-icon class="custom-c" inline>search</mat-icon>
             </button>
         </div>
     </div>

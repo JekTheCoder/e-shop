@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { IndexComponent } from './components/index/index.component';
 
-
 @NgModule({
   declarations: [
     IndexComponent
