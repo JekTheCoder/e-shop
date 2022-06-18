@@ -10,7 +10,7 @@ import { IndexComponent } from './components/index/index.component';
 
 @NgModule({
   declarations: [
-    IndexComponent
+    IndexComponent,
   ],
   imports: [
     CommonModule,

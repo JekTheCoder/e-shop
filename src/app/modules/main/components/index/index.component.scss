@@ -1,64 +1,23 @@
-header {
-    $height: 50px;
-    height: $height;
+section {
     width: 100%;
-    padding: 0px 5px;
+    position: relative;
+}
 
-    display: flex;
-    justify-content: space-between;
+#main-section {
+    height: 90vh;
 
+    .section-title {
+        color: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
 
-    > div:first-child {
-        padding: 5px;
+        font-size: 100px;
     }
 
-    > div:nth-child(2) {
-        $input-size: 20px;
-        margin: (($height - $input-size)/2) 0;
-        padding: 0 ($input-size/2);
-        position: relative;
-
-        .input-container {
-            background-color: #fff;
-            padding: 0 0 0 12px;
-            border-radius: 25px 0 0 25px;
-            display: flex;
-            align-items: center;
-
-            input, input:hover, input:focus, input:active {
-                height: $input-size;
-                width: 100%;
-                outline: none;
-                border: none;
-            }
-        }
-
-        .custom-button {
-            position: absolute;
-            right: 0;
-            top: 0;
-            bottom: 0;
-
-            button.custom-c {
-                height: $input-size;
-                width: $input-size;
-                font-size: 14px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                ::ng-deep span.mat-button-wrapper {
-                    display: block;
-                    padding: 0;
-                    line-height: 0;
-                }
-
-                .mat-icon.custom-c {
-                    width: 100%;
-                    height: 100%;
-                    line-height: 16px;
-                }
-            }
-        }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 }
