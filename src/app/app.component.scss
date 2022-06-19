@@ -1,14 +1,19 @@
+@use 'sass:math' as math;
+@use '@angular/material' as mat;
+@import 'theme-variables';
+
 :host {
     width: 100%;
 }
 
 header {
+    $background-color: mat.get-color-from-palette($primary-palette);
+
     position: fixed;
     top: 0; 
     z-index: 1000;
 
     $height: 50px;
-    height: $height;
     width: 100%;
     padding: 0px 5px;
 
@@ -17,20 +22,28 @@ header {
 
     transition: background-color .2s;
     &:hover {
-        background-color: #fff;
+        background-color: $background-color;
     }
 
 
     > div:first-child {
         padding: 5px;
+        display: flex;
+        align-items: center;
     }
 
     > div:nth-child(2) {
         $input-size: 20px;
-        margin: (($height - $input-size)/2) 0;
-        padding: 0 ($input-size/2);
+        margin: math.div($height - $input-size, 2) 0;
+        padding: 0 math.div($input-size, 2);
         position: relative;
 
         
     }
+}
+
+footer {
+    $background-color: mat.get-color-from-palette($accent-palette);
+    background-color: $background-color;
+    height: 100px;
 }

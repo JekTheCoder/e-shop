@@ -1,8 +1,8 @@
-<div class="input-container" [@inputAnim]="!opened? 'opened':'closed' " style="overflow:hidden;">
+<div class="input-container" [@inputAnim]="opened? 'opened':'closed' " style="overflow:hidden;">
     <input type="text">
 </div>
 <div class="custom-button">
-    <button mat-mini-fab class="custom-c" [@buttonAnim]="!opened? 'open':'closed' " (click)="opened = !opened" >
+    <button mat-mini-fab class="custom-c" [@buttonAnim]="opened? 'open':'closed' " (click)="opened = !opened" >
         <mat-icon class="custom-c" inline>search</mat-icon>
     </button>
 </div>
