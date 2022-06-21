@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
+import {AfterViewInit, Component, ContentChildren, OnInit, QueryList } from '@angular/core';
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
 
 interface Image {
@@ -12,66 +12,45 @@ interface Image {
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
-  
-  @Input()
-  images!: Image[]
 
-  // @ContentChild('list') items?: ElementRef
+  @ContentChildren(CarouselItemComponent) items!: QueryList<CarouselItemComponent>;
 
-  @ViewChildren(CarouselItemComponent) items!: QueryList<CarouselItemComponent>;
-  currentPosition = 0;
-  translationCompleted = true;
-
-  constructor() { 
-  }
-
-  ngOnInit(): void {
-    if (!this.images) throw new TypeError('images Input is required')
-  }
+  position = 0;
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.items.forEach((items, i) => items.setPosition(i))
-    }, 0);
+      this.items.forEach((item, i) => item.setPosition(i))
+      this.items.last.setPosition(-1)
+    }, 501)
   }
 
-  previus() {
-    if (!this.translationCompleted) return;
-    this.translationCompleted = false;
-    setTimeout(() => this.translationCompleted = true, 5000)
-
-
-    this.getLast()?.setPosition(-1)
-
-    this.currentPosition = this.sum(this.currentPosition, 1, this.items.length)
-    this.items.forEach((item, i) => item.animatePosition(this.sum(this.currentPosition, i, this.items.length)))
+  ngOnInit(): void {
+      
   }
+
+  refresh() {}
 
   next() {
-    if (!this.translationCompleted) return;
-    this.translationCompleted = false;
-    setTimeout(() => this.translationCompleted = true, 5000)
-
-    this.getLast()?.setPosition(this.items.length)
-
-    this.currentPosition = this.sum(this.currentPosition, -1, this.items.length)
-    // this.items.forEach((item, i) => item.animatePosition(this.sum(this.currentPosition, i, this.items.length)))
-
+    this.move(-1)
   }
 
-  updatePositions() {
-    this.items.forEach((item, i) => item.setPosition)
+  previous() {
+    this.move(1)
   }
 
-  private getLast() {
-    return this.items.get(this.sum(this.currentPosition, -1, this.items.length))
+  private move(multiplier: number) {
+    const before = this.sum(this.position, -1, this.items.length)
+    this.items.get(before)?.setPosition(this.items.length - 1)
+
+    
+    this.items.forEach((item, i) => {
+      const value = this.sum(this.position, multiplier*(i-1), this.items.length)
+      item.animatePosition(value, value+multiplier)
+    })
+    this.position = this.sum(this.position, 1, this.items.length)
   }
 
-  private sum(value: number, sum: number, max: number) {
-    return (value + max + sum) % max
-  }
-
-  refresh() {
-    console.log(0)
+  private sum(value: number, add: number, max: number) {
+    return (value + max + add) % max
   }
 }

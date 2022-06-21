@@ -10,7 +10,7 @@ import { animations } from './carousel-item.component.animations';
 export class CarouselItemComponent implements OnInit {
 
   @HostBinding('@move')
-  pos?: { value: 'position', params: { pos: number } };
+  pos?: { value: unknown, params: { to: number, from: number } };
 
   @HostBinding('style.transform')
   rawTransform: string = '';
@@ -20,10 +20,10 @@ export class CarouselItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  animatePosition(position: number) {
+  animatePosition(position: number, from: number) {
     this.pos = {
-      value: 'position',
-      params: { pos: position*100 }
+      value: position,
+      params: { to: position*100, from: from*100 }
     }
   }
 

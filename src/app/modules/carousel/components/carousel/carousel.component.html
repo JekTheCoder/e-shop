@@ -1,8 +1,8 @@
 <main class="img-container" #content (cdkObserveContent)="refresh()">
-    <!-- <ng-content select="app-carousel-item"></ng-content> -->
+    <ng-content select="app-carousel-item"></ng-content>
 </main>
-<button (click)="previus()">prev</button>
-
+<button (click)="previous()">prev</button>
+<!-- 
 <div class="points-container" style="width: 100%; height: 100px; overflow: hidden;">
     <app-carousel-item>
         <p>1</p>
@@ -16,6 +16,6 @@
     <app-carousel-item>
         <p>4</p>
     </app-carousel-item>
-</div>
+</div> -->
 
 <button (click)="next()">next</button>
