@@ -19,9 +19,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.items.forEach((item, i) => item.setPosition(i))
-      this.items.last.setPosition(-1)
-    }, 501)
+      this.items.first.setPosition(0)
+    }, 0)
   }
 
   ngOnInit(): void {
@@ -39,15 +38,9 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   }
 
   private move(multiplier: number) {
-    const before = this.sum(this.position, -1, this.items.length)
-    this.items.get(before)?.setPosition(this.items.length - 1)
-
-    
-    this.items.forEach((item, i) => {
-      const value = this.sum(this.position, multiplier*(i-1), this.items.length)
-      item.animatePosition(value, value+multiplier)
-    })
-    this.position = this.sum(this.position, 1, this.items.length)
+    this.items.get(this.position)?.out(multiplier)
+    this.position = this.sum(this.position, multiplier, this.items.length);
+    this.items.get(this.position)?.in(-multiplier, 0)
   }
 
   private sum(value: number, add: number, max: number) {

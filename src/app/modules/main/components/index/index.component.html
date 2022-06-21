@@ -1,6 +1,6 @@
 <section id="main-section">
     <app-carousel class="caurusel">
-        <app-carousel-item>
+        <!-- <app-carousel-item>
             <img src="https://www.esdesignbarcelona.com/sites/default/files/imagenes/haz-crecer-tu-marca-de-ropa-frente-la-competencia_1.jpg" alt="">
         </app-carousel-item>
         <app-carousel-item>
@@ -11,6 +11,9 @@
         </app-carousel-item>
         <app-carousel-item>
             <img src="https://www.esdesignbarcelona.com/sites/default/files/imagenes/haz-crecer-tu-marca-de-ropa-frente-la-competencia_1.jpg" alt="">
+        </app-carousel-item> -->
+        <app-carousel-item *ngFor="let i of [1, 2, 3, 4, 5]">
+            <p>{{ i }}</p>
         </app-carousel-item>
     </app-carousel>
 
