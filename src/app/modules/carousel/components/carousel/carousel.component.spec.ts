@@ -14,8 +14,6 @@ describe('CarouselComponent', () => {
 
     fixture = TestBed.createComponent(CarouselComponent);
     component = fixture.componentInstance;
-
-    component.images = [];
     fixture.detectChanges();
   });
 
