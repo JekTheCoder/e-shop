@@ -1,12 +1,17 @@
+<div class="mouse-detector"></div>
+
 <main class="img-container">
     <ng-content select="app-carousel-item"></ng-content>
 </main>
 
-<div class="btn-container">
-    <button mat-icon-button (click)="previous()">
+<div class="btn-container" 
+    (mouseenter)="mouseIn = 'in'"
+    (mouseleave)="mouseIn = 'out'"
+    >
+    <button mat-icon-button (click)="previous()" [@buttonShow]="mouseIn">
         <mat-icon>navigate_before</mat-icon>
     </button>
-    <button mat-icon-button (click)="next()">
+    <button mat-icon-button (click)="next()" [@buttonShow]="mouseIn">
         <mat-icon>navigate_next</mat-icon>
     </button>
 </div>
