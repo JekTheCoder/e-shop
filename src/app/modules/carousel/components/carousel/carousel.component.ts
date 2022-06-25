@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ContentChildren, HostListener, OnInit, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, OnInit, QueryList } from '@angular/core';
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
 import { animations } from './carousel.component.animations';
 
@@ -22,12 +22,6 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {}
-
-  // @HostListener('mouseenter')
-  // onMouseEnter() { this.mouseIn = 'in' }
-
-  // @HostListener('mouseleave')
-  // onMouseLeave() { this.mouseIn = 'out' }
 
   next() {
     this.move(-1)

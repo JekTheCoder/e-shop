@@ -40,8 +40,4 @@ export class CarouselItemComponent implements OnInit {
     }
   }
 
-  setPosition(position: number) {
-    this.rawTransform = `translateX(${position*100}%)`
-  }
-
 }
