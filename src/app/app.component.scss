@@ -25,11 +25,28 @@ header {
         background-color: $background-color;
     }
 
-
-    > div:first-child {
+    .title {
         padding: 5px;
         display: flex;
         align-items: center;
+
+        a {
+            color: none;
+            text-decoration: none;
+        }
+
+        h1 {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            color: #000;
+
+            // TODO: ADD A BETTER ANIMATION
+            transition: font-size .2s;
+            &:hover {
+                font-size: 34px;
+            }
+        }
     }
 
     > div:nth-child(2) {
