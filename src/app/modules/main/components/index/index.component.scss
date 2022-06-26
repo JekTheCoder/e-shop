@@ -1,10 +1,13 @@
+@use '@angular/material' as mat;
+@import 'theme-variables.scss';
+
 section {
     width: 100%;
     position: relative;
 }
 
 #main-section {
-    height: 90vh;
+    height: 98vh;
 
     .section-title {
         color: #fff;
@@ -19,4 +22,23 @@ section {
         height: 100%;
     }
 
+}
+
+.separator {
+    height: 10px;
+    width: 100%;
+
+    background-color: mat.get-color-from-palette($primary-palette);
+}
+
+#second-section {
+    padding: 20px;
+    >h3 {
+        font-size: 4vw;
+
+    }
+
+    .carousel {
+        height: 40px;
+    }
 }

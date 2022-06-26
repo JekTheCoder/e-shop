@@ -12,7 +12,7 @@ import { CarouselItemComponent } from './components/carousel-item/carousel-item.
 @NgModule({
   declarations: [
     CarouselComponent,
-    CarouselItemComponent
+    CarouselItemComponent,
   ],
   imports: [
     CommonModule,

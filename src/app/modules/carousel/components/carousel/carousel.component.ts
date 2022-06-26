@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ContentChildren, OnInit, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, Input, OnInit, QueryList } from '@angular/core';
+import { BaseCarouselComponent } from '../base-carousel/base-carousel.component';
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
 import { animations } from './carousel.component.animations';
 
@@ -8,20 +9,9 @@ import { animations } from './carousel.component.animations';
   styleUrls: ['./carousel.component.scss'],
   animations
 })
-export class CarouselComponent implements OnInit, AfterViewInit {
-
-  @ContentChildren(CarouselItemComponent) items!: QueryList<CarouselItemComponent>;
+export class CarouselComponent extends BaseCarouselComponent implements OnInit {
 
   mouseIn: 'in' | 'out' = 'out';
-  position = 0;
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.items.first.in(0, 0)
-    }, 0)
-  }
-
-  ngOnInit(): void {}
 
   next() {
     this.move(-1)
@@ -29,15 +19,5 @@ export class CarouselComponent implements OnInit, AfterViewInit {
 
   previous() {
     this.move(1)
-  }
-
-  private move(multiplier: number) {
-    this.items.get(this.position)?.out(multiplier)
-    this.position = this.sum(this.position, -multiplier, this.items.length);
-    this.items.get(this.position)?.in(-multiplier, 0)
-  }
-
-  private sum(value: number, add: number, max: number) {
-    return (value + max + add) % max
   }
 }
