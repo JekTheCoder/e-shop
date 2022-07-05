@@ -3,7 +3,7 @@ import { animations } from './carousel-item.component.animations';
 
 @Component({
   selector: 'app-carousel-item',
-  templateUrl: './carousel-item.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./carousel-item.component.scss'],
   animations
 })
@@ -17,9 +17,6 @@ export class CarouselItemComponent implements OnInit {
     value: 'out',
     params: { to: 100, from: 0 }
   }
-
-  @HostBinding('style.transform')
-  rawTransform: string = '';
 
   constructor() { }
 
@@ -38,6 +35,10 @@ export class CarouselItemComponent implements OnInit {
       value: 'out',
       params: { to: to*100 }
     }
+  }
+
+  getPosition() {
+    return this.state.params.to/100
   }
 
 }

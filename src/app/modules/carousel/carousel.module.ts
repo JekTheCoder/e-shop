@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CarouselItemComponent } from './components/carousel-item/carousel-item.component';
+import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
 
 
 
@@ -13,6 +14,7 @@ import { CarouselItemComponent } from './components/carousel-item/carousel-item.
   declarations: [
     CarouselComponent,
     CarouselItemComponent,
+    CustomCarouselComponent,
   ],
   imports: [
     CommonModule,

@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, ContentChildren, Input, OnInit, QueryList } from '@angular/core';
-import { BaseCarouselComponent } from '../base-carousel/base-carousel.component';
-import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
+import { Component, Input } from '@angular/core';
+import { CustomCarouselComponent } from '../custom-carousel/custom-carousel.component';
 import { animations } from './carousel.component.animations';
 
 @Component({
@@ -9,15 +8,8 @@ import { animations } from './carousel.component.animations';
   styleUrls: ['./carousel.component.scss'],
   animations
 })
-export class CarouselComponent extends BaseCarouselComponent implements OnInit {
+export class CarouselComponent extends CustomCarouselComponent {
 
   mouseIn: 'in' | 'out' = 'out';
-
-  next() {
-    this.move(-1)
-  }
-
-  previous() {
-    this.move(1)
-  }
+  
 }
