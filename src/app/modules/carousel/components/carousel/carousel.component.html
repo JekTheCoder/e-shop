@@ -7,11 +7,12 @@
 <div class="btn-container" 
     (mouseenter)="mouseIn = 'in'"
     (mouseleave)="mouseIn = 'out'"
+    
     >
-    <button mat-icon-button (click)="previous()" [@buttonShow]="mouseIn">
+    <button mat-icon-button (click)="previous()" [@buttonShow]="mouseIn" [disabled]="buttonDisabled$ | async">
         <mat-icon>navigate_before</mat-icon>
     </button>
-    <button mat-icon-button (click)="next()" [@buttonShow]="mouseIn">
+    <button mat-icon-button (click)="next()" [@buttonShow]="mouseIn" [disabled]="buttonDisabled$ | async">
         <mat-icon>navigate_next</mat-icon>
     </button>
 </div>

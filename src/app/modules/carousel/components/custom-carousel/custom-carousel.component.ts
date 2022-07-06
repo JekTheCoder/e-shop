@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ContentChildren, Input, OnDestroy, QueryList } from '@angular/core';
 import { CircularNumbersService } from '@carousel/services/circular-numbers.service';
-import { interval, min, Observable, startWith, Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { interval, Observable, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
 
 @Component({
@@ -42,16 +42,10 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
       
       this.interval$
       .pipe(takeUntil(this.unsuscriber$))
-      .subscribe(() => this.move(-1))
+      .subscribe(() => this.moveTo(this.position-1))
     }
       
   } 
-
-  move(side: number) {
-    this.items.get(this.position)?.out(side)
-    this.position = this.cn.sum(this.position, -side, this.items.length);
-    this.items.get(this.position)?.in(-side, 0)
-  }
 
   moveTo(to: number) {
     to = this.cn.normalize(to, this.items.length);
@@ -72,8 +66,7 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   previous() {
-    this.move(1)
-    this.reset$.next()
+    this.moveTo(this.position-1)
   }   
 
 }

@@ -1,4 +1,5 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { animations } from './carousel-item.component.animations';
 
 interface state {
@@ -12,14 +13,26 @@ interface state {
   styleUrls: ['./carousel-item.component.scss'],
   animations
 })
-export class CarouselItemComponent implements OnInit {
+export class CarouselItemComponent implements OnInit, OnDestroy {
 
   @HostBinding('@move')
   state?: state = { value: 0, params: { passingBy: 0, to: 0 } };
 
+  onTransition$ = new Subject<boolean>();
+
+  @HostListener('@move.start')
+  animInit() { this.onTransition$.next(true) }
+
+  @HostListener('@move.done')
+  animEnd() { this.onTransition$.next(false) }
+
   constructor() { }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+      this.onTransition$.complete();
+  }
 
   move(to: number, passingBy: number) {
     to *= 100;
@@ -29,14 +42,6 @@ export class CarouselItemComponent implements OnInit {
       value: to/100,
       params: { passingBy, to }
     }
-  }
-
-  in(from: number, to: number) {
-    this.move(to, from)
-  }
-
-  out(to: number) {
-    this.move(to, 0)
   }
 
   getPosition() {
