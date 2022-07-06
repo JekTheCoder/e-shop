@@ -4,8 +4,10 @@
 }
 
 :host {
-    display: inline-block;
+    display: flex;
     position: absolute;
+
+    flex-direction: column-reverse;
     @include fit-parent();
 
     ::ng-deep {

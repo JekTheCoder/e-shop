@@ -2,10 +2,10 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
 
 const move = 
 trigger('move', [
-    state('*', style({ transform: 'translateX({{ to }}%)' }), { params: { from: 100, to: 100 } }),
+    state('*', style({ transform: 'translateX({{ to }}%)' }), { params: { passingBy: 100, to: 100 } }),
+    transition('void=>*', animate(0)),
     transition(':increment, :decrement', [
-        style({ transform: 'translateX({{ from }}%)' }),
-        animate('1s ease-in', style({ transform: 'translateX({{ to }}%)' }))
+        animate('1s ease-in', style({ transform: 'translateX({{ passingBy }}%)' }))
     ]),
 ])
 

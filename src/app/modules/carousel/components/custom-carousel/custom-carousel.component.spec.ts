@@ -62,11 +62,9 @@ describe('CustomCarouselComponent', () => {
     await initializate(2);
     
     const firstItem = fixture.debugElement.query(By.css('app-carousel-item')).componentInstance as CarouselItemComponent
-    spyOn(firstItem, 'in').and.callThrough()
     fixture.detectChanges();
     await delay()
 
-    expect(firstItem.in).toHaveBeenCalledOnceWith(0, 0)
     expect(firstItem.getPosition()).toBe(0)
   })
 
@@ -85,14 +83,15 @@ describe('CustomCarouselComponent', () => {
 
   it('should move the items correctly', async () => {
     await initializate(4);
+    component.delay = false;
 
     const [ first, second, third, fourth ] = fixture.debugElement.queryAll(By.css('app-carousel-item')).map(node => node.componentInstance as CarouselItemComponent)
     fixture.detectChanges();
     await delay()
 
-    component.move(-1)
+    component.moveTo(3)
     expect(first.getPosition()).not.toBe(0)
-    expect(second.getPosition()).toBe(0)
+    expect(fourth.getPosition()).toBe(0)
   })
 
   it('should move its items past an interval', async () => {

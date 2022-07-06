@@ -15,24 +15,23 @@ interface state {
 export class CarouselItemComponent implements OnInit {
 
   @HostBinding('@move')
-  state?: state = { value: 1, params: { from: 100, to: 100 } };
+  state?: state = { value: 0, params: { passingBy: 0, to: 0 } };
 
   constructor() { }
 
   ngOnInit(): void {}
 
-  move(to: number, from: number) {
+  move(to: number, passingBy: number) {
     to *= 100;
-    from *= 100;
+    passingBy *= 100;
 
     this.state = {
       value: to/100,
-      params: { from, to }
+      params: { passingBy, to }
     }
   }
 
   in(from: number, to: number) {
-    console.log(from, to)
     this.move(to, from)
   }
 
@@ -41,7 +40,7 @@ export class CarouselItemComponent implements OnInit {
   }
 
   getPosition() {
-    return this.state!.params['to']/100
+    return this.state?.value as number
   }
 
 }
