@@ -1,6 +1,11 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { animations } from './carousel-item.component.animations';
 
+interface state {
+  value: unknown,
+  params: { [key:string]:number }
+}
+
 @Component({
   selector: 'app-carousel-item',
   template: '<ng-content></ng-content>',
@@ -10,35 +15,33 @@ import { animations } from './carousel-item.component.animations';
 export class CarouselItemComponent implements OnInit {
 
   @HostBinding('@move')
-  state: {
-    value: 'in' | 'out',
-    params: any
-  } = {
-    value: 'out',
-    params: { to: 100, from: 0 }
-  }
+  state?: state = { value: 1, params: { from: 100, to: 100 } };
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  move(to: number, from: number) {
+    to *= 100;
+    from *= 100;
+
+    this.state = {
+      value: to/100,
+      params: { from, to }
+    }
   }
 
   in(from: number, to: number) {
-    this.state = {
-      value: 'in',
-      params: { from: from*100, to: to*100 }
-    }
+    console.log(from, to)
+    this.move(to, from)
   }
 
   out(to: number) {
-    this.state = {
-      value: 'out',
-      params: { to: to*100 }
-    }
+    this.move(to, 0)
   }
 
   getPosition() {
-    return this.state.params.to/100
+    return this.state!.params['to']/100
   }
 
 }
