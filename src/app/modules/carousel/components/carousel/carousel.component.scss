@@ -16,8 +16,20 @@
     position: absolute;
     bottom: 0;
 
+    width: 100%;
+    padding: 16px;
+
     display: flex;
     justify-content: center;
+
+    z-index: 550;
+
+    .point {
+        margin: 0 5px;
+        background-color: #fff;
+        width: 10px;
+        height: 2px;
+    }
 }
 
 .btn-container {

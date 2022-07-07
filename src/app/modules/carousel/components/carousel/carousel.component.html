@@ -17,3 +17,6 @@
     </button>
 </div>
 
+<div class="points-container">
+    <div *ngFor="let item of items; let i = index" class="point" (click)="moveTo(i)"></div>
+</div>

@@ -12,11 +12,11 @@ export class CircularNumbersService {
     }
 
     negative(value1: number, max: number): number {
-        return value1 < 0 ? this.normalize(value1, max) : -this.negative(-value1, max);
+        return value1 <= 0 ? this.normalize(value1, max) : -this.negative(-value1, max);
     }
 
     absoluteMin(value1: number, value2: number) {
-        return Math.abs(value1) < Math.abs(value2) ? value1 : value2;
+        return Math.abs(value1) <= Math.abs(value2) ? value1 : value2;
     }
 
     minus(value: number, add: number, max: number) {

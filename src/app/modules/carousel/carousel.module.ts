@@ -9,7 +9,6 @@ import { CarouselItemComponent } from './components/carousel-item/carousel-item.
 import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
 
 
-
 @NgModule({
   declarations: [
     CarouselComponent,

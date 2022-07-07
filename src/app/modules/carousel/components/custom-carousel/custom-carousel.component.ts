@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ContentChildren, Input, OnDestroy, QueryList 
 import { CircularNumbersService } from '@carousel/services/circular-numbers.service';
 import { interval, Observable, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
+import { ItemPositionCalcService } from './services/item-position-calc.service';
 
 @Component({
   selector: 'app-custom-carousel',
@@ -21,7 +22,7 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
   private reset$ = new Subject<void>()
   private interval$?: Observable<number>;
 
-  constructor(private cn: CircularNumbersService) {}
+  constructor(private cn: CircularNumbersService, private itemPosSer: ItemPositionCalcService) {}
 
   ngAfterViewInit() {
     setTimeout(() => this.afterInit(), 0)
@@ -35,7 +36,7 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
  afterInit() {
     if (this.items.length < 2) throw new Error('la wea cuantica')
 
-    this.items.forEach((item, i) => item.move(i, i))
+    this.items.forEach((item, i) => item.setPos(i))
 
     if (this.delay) {
       this.interval$ = this.reset$.pipe(startWith(0), switchMap(() => interval(this.delay as number)))
@@ -51,10 +52,9 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
     to = this.cn.normalize(to, this.items.length);
 
     const minDiff = this.cn.minimunDifference(this.position, to, this.items.length);
-    this.items.forEach(item => {
-      const newPos = item.getPosition() - minDiff;
-      
-      item.move(this.cn.normalize(newPos, this.items.length), newPos)
+    this.items.forEach((item, i) => {
+      const [ to, passingBy, from ] = this.itemPosSer.calculatePosition(minDiff, this.position, i, this.items.length);
+      item.move(to, passingBy, from)
     })
 
     this.position = to;

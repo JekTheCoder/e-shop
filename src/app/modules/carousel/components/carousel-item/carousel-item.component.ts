@@ -16,7 +16,7 @@ interface state {
 export class CarouselItemComponent implements OnInit, OnDestroy {
 
   @HostBinding('@move')
-  state?: state = { value: 0, params: { passingBy: 0, to: 0 } };
+  state?: state = { value: 0, params: { passingBy: 0, to: 0, from: 0 } };
 
   onTransition$ = new Subject<boolean>();
 
@@ -34,13 +34,26 @@ export class CarouselItemComponent implements OnInit, OnDestroy {
       this.onTransition$.complete();
   }
 
-  move(to: number, passingBy: number) {
+  move(to: number, passingBy: number, from: number) {
     to *= 100;
     passingBy *= 100;
+    from *= 100;
 
     this.state = {
       value: to/100,
-      params: { passingBy, to }
+      params: { passingBy, to, from }
+    }
+  }
+
+  setPos(x: number) {
+    x *= 100;
+    this.state = {
+      value: x/100,
+      params: {
+        to: x,
+        from: x,
+        passingBy: x
+      }
     }
   }
 
