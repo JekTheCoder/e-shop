@@ -20,7 +20,6 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
 
   private unsuscriber$ = new Subject<void>();
   private reset$ = new Subject<void>()
-  private interval$?: Observable<number>;
 
   constructor(private cn: CircularNumbersService, private itemPosSer: ItemPositionCalcService) {}
 
@@ -28,11 +27,10 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
     setTimeout(() => this.setItems(), 0)
     setTimeout(() => {
       if (this.delay) {
-        this.interval$ = this.reset$.pipe(startWith(0), switchMap(() => interval(this.delay as number)))
-        
-        this.interval$
+        this.reset$
+        .pipe(startWith(0), switchMap(() => interval(this.delay as number)))
         .pipe(takeUntil(this.unsuscriber$))
-        .subscribe(() => this.move(this.position+this.steps))
+        .subscribe(() => this.move(this.position+this.steps))  
       }
     })
   }
