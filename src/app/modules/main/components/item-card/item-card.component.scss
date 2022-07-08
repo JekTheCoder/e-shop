@@ -1,9 +1,11 @@
 :host {
     display: inline-block;
-    width: 100px;
-    aspect-ratio: 2;
+    width: 400px;
+    aspect-ratio: .5;
 
     background-color: #fff;
     border-radius: 25px;
     border: #000 solid 1px;
+
+    padding: 20px;
 }

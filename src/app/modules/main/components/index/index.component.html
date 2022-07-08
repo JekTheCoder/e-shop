@@ -19,11 +19,8 @@
 <section id="second-section">
     <h3>HOT SALE</h3>
     <app-carousel class="carousel" [delay]="false" [itemsShowed]="3">
-        <app-carousel-item>
-            a
-        </app-carousel-item>
-        <app-carousel-item>
-            a
+        <app-carousel-item *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+            <app-item-card [title]="i | string"></app-item-card>
         </app-carousel-item>
     </app-carousel>
 </section>

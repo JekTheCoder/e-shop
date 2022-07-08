@@ -9,6 +9,7 @@ import { CarouselModule } from '../carousel/carousel.module'
 
 import { IndexComponent } from './components/index/index.component';
 import { ItemCardComponent } from './components/item-card/item-card.component';
+import { StringPipe } from '@standalonepipes/string.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ItemCardComponent } from './components/item-card/item-card.component';
     MatIconModule,
     MatButtonModule,
     CarouselModule,
-    ObserversModule
+    ObserversModule,
+    StringPipe
   ]
 })
 export class MainModule { }
