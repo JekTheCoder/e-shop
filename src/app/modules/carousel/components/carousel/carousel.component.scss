@@ -29,6 +29,11 @@
         background-color: #fff;
         width: 10px;
         height: 2px;
+
+        transition: transform 200ms;
+        &:hover {
+            transform: scale(1.5);
+        }
     }
 }
 

@@ -16,7 +16,7 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
 
   @ContentChildren(CarouselItemComponent) items!: QueryList<CarouselItemComponent>;
   
-  private position = 0;
+  position = 0;
 
   private unsuscriber$ = new Subject<void>();
   private reset$ = new Subject<void>()

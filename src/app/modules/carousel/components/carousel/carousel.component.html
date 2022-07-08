@@ -7,7 +7,6 @@
 <div class="btn-container" 
     (mouseenter)="mouseIn = 'in'"
     (mouseleave)="mouseIn = 'out'"
-    
     >
     <button mat-icon-button (click)="previous()" [@buttonShow]="mouseIn" [disabled]="buttonDisabled$ | async">
         <mat-icon>navigate_before</mat-icon>
@@ -17,6 +16,7 @@
     </button>
 </div>
 
-<div class="points-container">
-    <div *ngFor="let item of items; let i = index" class="point" (click)="moveTo(i)"></div>
-</div>
+<ng-template #chip>
+    <div class="point"></div>
+</ng-template>
+<app-chips-controller class="points-container" [chipSelected]="position" [chipRef]="chip" [items]="items.length" (chipClicked)="moveTo($event)"></app-chips-controller>

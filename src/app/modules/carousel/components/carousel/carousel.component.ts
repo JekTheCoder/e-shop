@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { Subject } from 'rxjs';
+import { Component, } from '@angular/core';
+import { Observable, } from 'rxjs';
 import { CustomCarouselComponent } from '../custom-carousel/custom-carousel.component';
 import { animations } from './carousel.component.animations';
 

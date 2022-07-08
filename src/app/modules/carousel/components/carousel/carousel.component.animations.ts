@@ -7,4 +7,4 @@ trigger('buttonShow', [
     transition('in <=> out', animate('200ms'))
 ])
 
-export const animations = [buttonShow]
+export const animations = [buttonShow ]
