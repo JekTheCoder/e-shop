@@ -15,8 +15,8 @@ export class CarouselComponent extends CustomCarouselComponent {
 
   mouseIn: 'in' | 'out' = 'out';
 
-  override afterInit(): void {
-      super.afterInit()
+  override setItems(): void {
+      super.setItems()
       this.buttonDisabled$ = this.items.first.onTransition$
   }
 }

@@ -18,6 +18,9 @@ export class CarouselItemComponent implements OnInit, OnDestroy {
   @HostBinding('@move')
   state?: state = { value: 0, params: { passingBy: 0, to: 0, from: 0 } };
 
+  @HostBinding('style.width')
+  width: string = '100%';
+
   onTransition$ = new Subject<boolean>();
 
   @HostListener('@move.start')
@@ -59,6 +62,13 @@ export class CarouselItemComponent implements OnInit, OnDestroy {
 
   getPosition() {
     return this.state?.value as number
+  }
+
+  /**
+  * @param {number} proportion: a number between 0 and 1
+  */
+  setWidth(proportion: number) {
+    this.width = proportion*100 + '%';
   }
 
 }

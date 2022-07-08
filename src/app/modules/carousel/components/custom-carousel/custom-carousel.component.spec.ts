@@ -55,7 +55,7 @@ describe('CustomCarouselComponent', () => {
   it('should be prepared to recieve none', async () => {
     await initializate(0);
     
-    expect(() => component['afterInit']()).toThrowError()
+    expect(() => component['setItems']()).toThrowError()
   })
 
   it('should show an item', async () => {
