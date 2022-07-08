@@ -1,5 +1,4 @@
 <div class="mouse-detector"></div>
-
 <main class="img-container">
     <ng-content select="app-carousel-item"></ng-content>
 </main>
@@ -7,11 +6,12 @@
 <div class="btn-container" 
     (mouseenter)="mouseIn = 'in'"
     (mouseleave)="mouseIn = 'out'"
+    *ngLet="(buttonDisabled$ | async) as buttonDisabled"
     >
-    <button mat-icon-button (click)="previous()" [@buttonShow]="mouseIn" [disabled]="buttonDisabled$ | async">
+    <button mat-icon-button (click)="previous()" [@buttonShow]="mouseIn" [disabled]="buttonDisabled">
         <mat-icon>navigate_before</mat-icon>
     </button>
-    <button mat-icon-button (click)="next()" [@buttonShow]="mouseIn" [disabled]="buttonDisabled$ | async">
+    <button mat-icon-button (click)="next()" [@buttonShow]="mouseIn" [disabled]="buttonDisabled">
         <mat-icon>navigate_next</mat-icon>
     </button>
 </div>

@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ProductInputComponent } from './utils/components/product-input/product-input.component'
+import { ProductInputComponent } from '@standalone/components/product-input/product-input.component'
 
 import { AppComponent } from './app.component';
 
