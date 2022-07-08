@@ -40,6 +40,9 @@ section {
 
     >.carousel {
         height: 450px;
-        
+        app-carousel-item {
+            display: flex;
+            align-items: center;
+        }
     }
 }

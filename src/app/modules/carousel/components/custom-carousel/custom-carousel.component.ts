@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChildren, Input, OnDestroy, QueryList } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, HostListener, Input, OnDestroy, QueryList } from '@angular/core';
 import { CircularNumbersService } from '@carousel/services/circular-numbers.service';
 import { interval, Observable, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
@@ -11,15 +11,23 @@ import { ItemPositionCalcService } from './services/item-position-calc.service';
 })
 export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
   @Input() delay: number | false = 5000;
-  @Input() itemsShowed = 1;
   @Input() steps = 1
-
+  
   @ContentChildren(CarouselItemComponent) items!: QueryList<CarouselItemComponent>;
   
+  @Input('itemsShowed') set itemShowedSetter(value: number) {
+    this.itemsShowed = value;
+    if (!this.afterInit) return;
+    this.setItems();
+  }
+
+  itemsShowed = 1
   position = 0;
 
   private unsuscriber$ = new Subject<void>();
-  private reset$ = new Subject<void>()
+  private reset$ = new Subject<void>();
+  private stop$ = new Subject<void>();
+  private afterInit = false;
 
   constructor(private cn: CircularNumbersService, private itemPosSer: ItemPositionCalcService) {}
 
@@ -28,11 +36,17 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
     setTimeout(() => {
       if (this.delay) {
         this.reset$
-        .pipe(startWith(0), switchMap(() => interval(this.delay as number)))
-        .pipe(takeUntil(this.unsuscriber$))
-        .subscribe(() => this.move(this.position+this.steps))  
+          .pipe(
+            startWith(0), 
+            switchMap(
+              () => interval(this.delay as number).pipe(takeUntil(this.stop$))
+            )
+          )
+          .pipe(takeUntil(this.unsuscriber$))
+          .subscribe(() => this.move(this.position+this.steps))  
       }
-    })
+    }, 0)
+    this.afterInit = true;
   }
 
   ngOnDestroy(): void {
@@ -40,10 +54,20 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
       this.unsuscriber$.complete();
   }
 
- setItems() {
-    if (this.items.length < this.itemsShowed + 1) throw new Error('la wea cuantica')
+  @HostListener('window:focus')
+  refresh() {
+    this.reset$.next()
+  }
 
-    this.items.forEach((item, i) => { item.setWidth(1/this.itemsShowed); item.setPos(i) })
+  @HostListener('window:blur') 
+  windowBlur() {
+    this.stop$.next()
+  }
+
+ setItems() {
+    if (this.items.length < this.itemsShowed + 1) throw new Error('Not enougth items!')
+
+    this.items.forEach((item, i) => { item.setWidth(1/this.itemsShowed); item.setPos(this.cn.normalize(i+this.position, this.items.length)) })
   } 
 
   private move(to: number) {
@@ -71,6 +95,6 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
   previous() {
     this.moveTo(this.position-this.steps)
     this.reset$.next()
-  }   
+  }
 
 }
