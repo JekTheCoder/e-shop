@@ -8,10 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { CarouselModule } from '../carousel/carousel.module'
 
 import { IndexComponent } from './components/index/index.component';
+import { ItemCardComponent } from './components/item-card/item-card.component';
 
 @NgModule({
   declarations: [
     IndexComponent,
+    ItemCardComponent,
   ],
   imports: [
     CommonModule,
