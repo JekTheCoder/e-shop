@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { FakeStoreService } from '../../services/fake-store.service';
+
+interface Item {
+  title: string,
+  body: string,
+  thumbnail: {
+    alt: string,
+    src: string
+  }
+}
 
 @Component({
   selector: 'app-index',
@@ -7,9 +18,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  items$?: Observable<Item[]>;
+
+  constructor(private store: FakeStoreService) { }
 
   ngOnInit(): void {
+    this.items$ = 
+      this.store.getSomeProducts(0)
+        .pipe(
+          map(products => products.map<Item>(
+            product => (
+              { title: product.title, 
+                body: product.description,
+                thumbnail: { alt: product.category, src: product.image }
+              })
+          ))
+        );
   }
 
 

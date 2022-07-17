@@ -10,6 +10,14 @@ export class ItemCardComponent implements OnInit {
   @Input() title: string = '';
   @Input() body: string = '';
 
+  @Input() thumbnail: {
+    alt: string,
+    src: string
+  } = {
+    alt: '',
+    src: ''
+  }
+
   constructor() { }
 
   ngOnInit(): void {

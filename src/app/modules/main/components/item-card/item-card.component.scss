@@ -1,5 +1,5 @@
 :host {
-    display: inline-block;
+    display: grid;
     width: 280px;
     height: 400px;
 
@@ -7,5 +7,10 @@
     border-radius: 25px;
     border: #000 solid 1px;
 
+    grid: 4fr 1fr / 100%;
+    overflow: hidden;
+}
+
+main {
     padding: 20px;
 }
