@@ -4,10 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ProductInputComponent } from '@standalone/components/product-input/product-input.component'
-
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+
+import { ProductInputComponent } from '@common/components/product-input/product-input.component';
 
 @NgModule({
   declarations: [
