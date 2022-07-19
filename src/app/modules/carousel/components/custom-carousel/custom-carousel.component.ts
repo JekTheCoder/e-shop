@@ -3,6 +3,7 @@ import { CircularNumbersService } from '@carousel/services/circular-numbers.serv
 import { interval, Observable, startWith, Subject, switchMap, takeUntil } from 'rxjs';
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
 import { ItemPositionCalcService } from './services/item-position-calc.service';
+import { Timer } from './services/timer.injectable';
 
 @Component({
   selector: 'app-custom-carousel',
@@ -24,9 +25,9 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
   itemsShowed = 1
   position = 0;
 
+  private timer?: Timer; 
+
   private unsuscriber$ = new Subject<void>();
-  private reset$ = new Subject<void>();
-  private stop$ = new Subject<void>();
   private afterInit = false;
 
   constructor(private cn: CircularNumbersService, private itemPosSer: ItemPositionCalcService) {}
@@ -35,15 +36,8 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
     setTimeout(() => this.setItems(), 0)
     setTimeout(() => {
       if (this.delay) {
-        this.reset$
-          .pipe(
-            startWith(0), 
-            switchMap(
-              () => interval(this.delay as number).pipe(takeUntil(this.stop$))
-            )
-          )
-          .pipe(takeUntil(this.unsuscriber$))
-          .subscribe(() => this.move(this.position+this.steps))  
+        this.timer = new Timer(this.delay as number);
+        this.timer.timer$.pipe(takeUntil(this.unsuscriber$)).subscribe(() => this.moveTo(this.position + this.steps))
       }
     }, 0)
     this.afterInit = true;
@@ -56,12 +50,12 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('window:focus')
   refresh() {
-    this.reset$.next()
+    this.timer?.reset();
   }
 
   @HostListener('window:blur') 
   windowBlur() {
-    this.stop$.next()
+    this.timer?.stop();
   }
 
  setItems() {
@@ -84,17 +78,17 @@ export class CustomCarouselComponent implements AfterViewInit, OnDestroy {
 
   moveTo(to: number) {
     this.move(to);
-    this.reset$.next()
+    this.timer?.reset();
   }
 
   next() {
     this.moveTo(this.position+this.steps)
-    this.reset$.next()
+    this.timer?.reset();
   }
 
   previous() {
     this.moveTo(this.position-this.steps)
-    this.reset$.next()
+    this.timer?.reset();
   }
 
 }
