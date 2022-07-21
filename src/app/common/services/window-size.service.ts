@@ -25,12 +25,12 @@ export class WindowSizeService implements OnDestroy {
     large: -1
   }
 
-  constructor(private window: Window) { 
-    fromEvent<WindowEvent>(this.window, 'resize')
+  constructor() { 
+    fromEvent<WindowEvent>(window, 'resize')
     .pipe(takeUntil(this.unsuscriber$), audit(v => interval(1000)))
     .subscribe(e => this.detectWindowSize(e))
 
-    setTimeout(() => this.window.dispatchEvent(new Event('resize')), 10)
+    setTimeout(() => window.dispatchEvent(new Event('resize')), 10)
   }
 
   private detectWindowSize(e: WindowEvent) {

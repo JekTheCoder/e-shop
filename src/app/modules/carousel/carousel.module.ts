@@ -10,6 +10,8 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { CarouselItemComponent } from './components/carousel-item/carousel-item.component';
 import { CustomCarouselComponent } from './components/custom-carousel/custom-carousel.component';
 import { ChipsControllerComponent } from './components/chips-controller/chips-controller.component';
+import { FreeCarouselComponent } from './components/free-carousel/free-carousel.component';
+import { RelativeCarouselItemComponent } from './components/relative-carousel-item/relative-carousel-item.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { ChipsControllerComponent } from './components/chips-controller/chips-co
     CarouselItemComponent,
     CustomCarouselComponent,
     ChipsControllerComponent,
+    FreeCarouselComponent,
+    RelativeCarouselItemComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,9 @@ import { ChipsControllerComponent } from './components/chips-controller/chips-co
   exports: [
     CarouselComponent,
     CarouselItemComponent,
+    ChipsControllerComponent,
+    RelativeCarouselItemComponent,
+    FreeCarouselComponent
   ]
 })
 export class CarouselModule { }

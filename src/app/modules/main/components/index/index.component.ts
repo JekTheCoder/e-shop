@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { FakeStoreService } from '../../services/fake-store.service';
+
+import { FakeStoreService } from '@main/services/fake-store.service';
+import { WindowSizeService } from '@common/services/window-size.service';
+
 
 interface Item {
   title: string,
@@ -19,8 +22,12 @@ interface Item {
 export class IndexComponent implements OnInit {
 
   items$?: Observable<Item[]>;
+  itemsShown?: Observable<number>;
 
-  constructor(private store: FakeStoreService) { }
+  constructor(
+    private store: FakeStoreService,
+    private windowSize: WindowSizeService
+    ) { }
 
   ngOnInit(): void {
     this.items$ = 
@@ -34,6 +41,8 @@ export class IndexComponent implements OnInit {
               })
           ))
         );
+
+    this.windowSize.windowSize$;
   }
 
 

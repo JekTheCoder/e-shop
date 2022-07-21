@@ -5,7 +5,7 @@
     "baseUrl": "./",
     "paths": {
       "@carousel/*": ["src/app/modules/carousel/*"],
-      "@main":["src/app/modules/main/*"],
+      "@main/*":["src/app/modules/main/*"],
       "@common/*": ["src/app/common/*"]
     },
     "outDir": "./dist/out-tsc",

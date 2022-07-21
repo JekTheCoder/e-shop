@@ -1,10 +1,10 @@
-import { Component, HostBinding, HostListener, OnDestroy, OnInit } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, HostBinding, HostListener, OnDestroy } from '@angular/core';
+import { Subject } from 'rxjs';
 import { animations } from './carousel-item.component.animations';
 
-interface state {
+export interface state {
   value: unknown,
-  params: { [key:string]:number }
+  params: { [key: string]: number }
 }
 
 @Component({
@@ -13,13 +13,13 @@ interface state {
   styleUrls: ['./carousel-item.component.scss'],
   animations
 })
-export class CarouselItemComponent implements OnInit, OnDestroy {
+export class CarouselItemComponent implements OnDestroy {
 
   @HostBinding('@move')
   state?: state = { value: 0, params: { passingBy: 0, to: 0, from: 0 } };
 
   @HostBinding('style.width')
-  width: string = '100%';
+  width: string = '';
 
   onTransition$ = new Subject<boolean>();
 
@@ -29,12 +29,8 @@ export class CarouselItemComponent implements OnInit, OnDestroy {
   @HostListener('@move.done')
   animEnd() { this.onTransition$.next(false) }
 
-  constructor() { }
-
-  ngOnInit(): void {}
-
   ngOnDestroy(): void {
-      this.onTransition$.complete();
+    this.onTransition$.complete();
   }
 
   move(to: number, passingBy: number, from: number) {
@@ -43,32 +39,17 @@ export class CarouselItemComponent implements OnInit, OnDestroy {
     from *= 100;
 
     this.state = {
-      value: to/100,
+      value: to / 100,
       params: { passingBy, to, from }
     }
   }
 
-  setPos(x: number) {
-    x *= 100;
-    this.state = {
-      value: x/100,
-      params: {
-        to: x,
-        from: x,
-        passingBy: x
-      }
-    }
+  setPos(position: number) {
+    this.move(position, position, position);
   }
 
   getPosition() {
     return this.state?.value as number
-  }
-
-  /**
-  * @param {number} proportion: a number between 0 and 1
-  */
-  setWidth(proportion: number) {
-    this.width = proportion*100 + '%';
   }
 
 }
