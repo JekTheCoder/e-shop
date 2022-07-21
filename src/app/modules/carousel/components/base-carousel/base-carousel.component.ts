@@ -13,6 +13,9 @@ import { Timer } from './services/timer.injectable';
 })
 export abstract class BaseCarouselComponent {
 
+  @Input('position') set positionSetter(value: number) {
+    this.moveTo(value);
+  }
   @Input() delay: number | false = 5000;
   @Input() steps = 1
 
@@ -27,7 +30,7 @@ export abstract class BaseCarouselComponent {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      // this.items.changes.subscribe(() => this.checkItems());
+      this.items.changes.subscribe(() => this.checkItems());
       this.setItemsPosition()
 
       if (this.delay) {

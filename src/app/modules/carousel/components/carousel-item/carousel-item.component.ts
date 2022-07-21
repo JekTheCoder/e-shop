@@ -44,7 +44,7 @@ export class CarouselItemComponent implements OnDestroy {
     }
   }
 
-  setPos(position: number) {
+  setPosition(position: number) {
     this.move(position, position, position);
   }
 

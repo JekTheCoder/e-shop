@@ -9,7 +9,7 @@ import { BaseCarouselComponent } from '../base-carousel/base-carousel.component'
 export class FreeCarouselComponent extends BaseCarouselComponent {
 
   protected setItemsPosition(): void {
-    this.items.forEach((item, i) => item.setPos(this.cn.normalize(i + this.position, this.items.length)))
+      this.items.forEach((item, i) => item.setPosition(this.cn.normalize(i+this.position, this.items.length)))
   }
 
   /**

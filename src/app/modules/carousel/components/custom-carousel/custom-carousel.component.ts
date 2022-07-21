@@ -29,7 +29,7 @@ export class CustomCarouselComponent extends BaseCarouselComponent {
  setItemsPosition() {
     this.checkItems();
 
-    this.items.forEach((item, i) => { item.setWidth(1/this.itemsShowed); item.setPos(this.cn.normalize(i+this.position, this.items.length)) })
+    this.items.forEach((item, i) => { item.setWidth(1/this.itemsShowed); item.setPosition(this.cn.normalize(i+this.position, this.items.length)) })
   } 
 
   protected override checkItems(): void {
