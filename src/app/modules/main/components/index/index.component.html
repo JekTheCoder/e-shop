@@ -20,9 +20,11 @@
 
 <section id="second-section">
     <h3>HOT SALE</h3>
-    <app-free-carousel class="carousel" [delay]="false" *ngIf="items$ | async as items">
+    <app-free-carousel class="carousel" [delay]="false" *ngIf="items$ | async as items" [position]="freePosition">
         <app-carousel-item *ngFor="let item of items">
             <app-item-card [title]="item.title" [body]="item.body" [thumbnail]="item.thumbnail"></app-item-card>
         </app-carousel-item>
+        
     </app-free-carousel>
+    <button (click)="next()">next</button>
 </section>

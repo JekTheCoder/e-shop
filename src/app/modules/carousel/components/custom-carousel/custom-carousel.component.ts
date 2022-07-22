@@ -1,4 +1,5 @@
 import { Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { ReplaySubject, takeUntil } from 'rxjs';
 import { BaseCarouselComponent } from '../base-carousel/base-carousel.component';
 import { RelativeCarouselItemComponent } from '../relative-carousel-item/relative-carousel-item.component';
 
@@ -13,17 +14,21 @@ export class CustomCarouselComponent extends BaseCarouselComponent {
   override items!: QueryList<RelativeCarouselItemComponent>;
   
   @Input('itemsShowed') set itemShowedSetter(value: number) {
-    this.itemsShowed = value;
-    if (!this.afterInit) return;
-    this.setItemsPosition();
+    this.itemsShowedReplay.next(value);
   }
   
-  itemsShowed = 1
-  protected afterInit = false;
+  protected itemsShowed = 1
+  protected itemsShowedReplay = new ReplaySubject<number>(1);
   
   override ngAfterViewInit() {
     super.ngAfterViewInit();
-    this.afterInit = true;
+
+    this.itemsShowedReplay
+      .pipe(takeUntil(this.unsuscriber$))
+      .subscribe(value => {
+        this.itemsShowed = value;
+        this.setItemsPosition();
+      })
   }
 
  setItemsPosition() {

@@ -1,5 +1,5 @@
 import { Component, ContentChildren, HostListener, Input, QueryList } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { ReplaySubject, Subject, takeUntil } from 'rxjs';
 
 import { CarouselItemComponent } from '../carousel-item/carousel-item.component';
 import { CircularNumbersService } from '@carousel/services/circular-numbers.service';
@@ -14,7 +14,7 @@ import { Timer } from './services/timer.injectable';
 export abstract class BaseCarouselComponent {
 
   @Input('position') set positionSetter(value: number) {
-    this.moveTo(value);
+    this.postionReplay.next(value);
   }
   @Input() delay: number | false = 5000;
   @Input() steps = 1
@@ -26,12 +26,18 @@ export abstract class BaseCarouselComponent {
 
   protected position = 0;
 
+  private postionReplay = new ReplaySubject<number>(1);
+  protected onTransition = false;
+
   constructor(protected cn: CircularNumbersService, protected ipc: ItemPositionCalcService) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
       this.items.changes.subscribe(() => this.checkItems());
       this.setItemsPosition()
+
+      this.postionReplay.pipe(takeUntil(this.unsuscriber$)).subscribe(value => this.moveTo(value));
+      this.items.first.onTransition$.pipe(takeUntil(this.unsuscriber$)).subscribe(value => this.onTransition = value);
 
       if (this.delay) {
         this.timer = new Timer(this.delay as number);
@@ -64,6 +70,8 @@ export abstract class BaseCarouselComponent {
   protected abstract setItemsPosition(): void;
 
   protected move(to: number) {
+    if (this.onTransition) return;
+
     to = this.cn.normalize(to, this.items.length);
 
     const minDiff = this.cn.minimunDifference(this.position, to, this.items.length);
@@ -82,12 +90,10 @@ export abstract class BaseCarouselComponent {
 
   next() {
     this.moveTo(this.position + this.steps)
-    this.timer?.reset();
   }
 
   previous() {
     this.moveTo(this.position - this.steps)
-    this.timer?.reset();
   }
 
 }

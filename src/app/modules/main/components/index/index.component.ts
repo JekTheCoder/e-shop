@@ -21,6 +21,8 @@ interface Item {
 })
 export class IndexComponent implements OnInit {
 
+  freePosition = 0;
+
   items$?: Observable<Item[]>;
   itemsShown?: Observable<number>;
 
@@ -45,5 +47,9 @@ export class IndexComponent implements OnInit {
     this.windowSize.windowSize$;
   }
 
+  next() {
+    console.log(this.freePosition);
+    this.freePosition += 1;
+  }
 
 }
