@@ -9,6 +9,7 @@ export class ItemCardComponent implements OnInit {
 
   @Input() title: string = '';
   @Input() body: string = '';
+  @Input() url: string = '';
 
   @Input() thumbnail: {
     alt: string,

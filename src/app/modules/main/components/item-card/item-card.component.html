@@ -1,7 +1,9 @@
-<header>
-    <img [src]="thumbnail.src" [alt]="thumbnail.alt">
-</header>
-<main>
-    <h5 class="title no-select">{{ title || 'No Title' }}</h5>
-    <p class="no-select">{{ body }}</p>
-</main>
+<a [routerLink]="url">
+    <header>
+        <img [src]="thumbnail.src" [alt]="thumbnail.alt">
+    </header>
+    <main>
+        <h5 class="title no-select">{{ title || 'No Title' }}</h5>
+        <p class="no-select">{{ body }}</p>
+    </main>
+</a>

@@ -1,4 +1,4 @@
-:host {
+a {
     display: grid;
     width: 280px;
     height: 400px;
@@ -8,6 +8,10 @@
 
     grid: 300px 1fr/100%;
     overflow: hidden;
+
+    text-decoration: none;
+    color: inherit;
+    cursor: auto;
 
     $transition-time: 200ms;
     transition: transform $transition-time, box-shadow $transition-time;
