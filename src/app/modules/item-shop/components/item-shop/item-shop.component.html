@@ -1,2 +1,11 @@
-<h1>PRODUCT</h1>
-<p>{{ (product$ | async) | json }}</p>
+<div class="separator"></div>
+<div class="container">
+    <div class="grid" *ngLet="product$ | async as product">
+        <img [src]="product.image" [alt]="product.title">
+        <div class="">
+            <h2>{{ product.title }}</h2>
+            <app-star-rating [points]="product.rating.rate" [count]="product.rating.count"></app-star-rating>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+</div>
