@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FakeStoreService } from '@common/services/fake-store.service';
 
 @Component({
   selector: 'app-item-shop',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemShopComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+
+  constructor(protected fs: FakeStoreService) { }
+
+  ngOnInit(): void {}
 
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { FakeStoreService } from '@main/services/fake-store.service';
-import { WindowSizeService } from '@common/services/window-size.service';
+import { FakeStoreService } from '@common/services/fake-store.service';
 import { FreeCarouselComponent } from '@carousel/components/free-carousel/free-carousel.component';
 
 interface Item {

@@ -30,4 +30,6 @@ export class FakeStoreService {
   getSomeProducts(products: number) {
     return this.http.get<Product[]>(this.baseUrl+'/products')
   }
+
+  getOne(id: number) {}
 }
