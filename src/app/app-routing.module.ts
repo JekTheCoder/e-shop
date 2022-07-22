@@ -10,7 +10,6 @@ const routes: Routes = [
   },
   {
     path: 'shop',
-    pathMatch: 'full',
     loadChildren: () => (import ('./modules/item-shop/item-shop.module')).then(m => m.ItemShopModule)
   },
   {
