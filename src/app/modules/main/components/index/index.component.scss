@@ -32,6 +32,8 @@ section {
 }
 
 #second-section {
+    background-color: #fafafa;
+
     padding: 20px;
     >h3 {
         font-size: 4vw;
@@ -40,8 +42,9 @@ section {
 
     >.carousel {
         height: 450px;
+
         app-carousel-item {
-            padding: 0 10px;
+            padding: 30px 10px;
         }
     }
 }
