@@ -6,7 +6,8 @@
     "paths": {
       "@carousel/*": ["src/app/modules/carousel/*"],
       "@main/*":["src/app/modules/main/*"],
-      "@common/*": ["src/app/common/*"]
+      "@itemshop/*": ["src/app/modules/item-shop/*"],
+      "@common/*": ["src/app/common/*"],
     },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
