@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-interface Product {
+export interface Product {
   id: number,
   title: string,
   price: number,
@@ -25,11 +25,16 @@ export class FakeStoreService {
 
   /**
    * 
-   * @param {number} products: number of products to get
+   * @param {number | flase} limit: number of products to get
    */
-  getSomeProducts(products: number) {
-    return this.http.get<Product[]>(this.baseUrl+'/products')
+  getSomeProducts(limit: number | false = false) {
+    let params: { limit?: number } = {};
+    if (limit) params.limit = limit;
+
+    return this.http.get<Product[]>(this.baseUrl+'/products', { params })
   }
 
-  getOne(id: number) {}
+  getOne(id: number) {
+    return this.http.get<Product | null>(this.baseUrl+'/products/'+id)
+  }
 }
