@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ItemShopComponent } from './components/item-shop/item-shop.component';
 
-const routes: Routes = [];
+const routes: Routes = [{
+  path: ':itemId',
+  pathMatch: 'full',
+  component: ItemShopComponent
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

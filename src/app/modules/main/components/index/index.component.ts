@@ -5,8 +5,8 @@ import { FakeStoreService } from '@main/services/fake-store.service';
 import { WindowSizeService } from '@common/services/window-size.service';
 import { FreeCarouselComponent } from '@carousel/components/free-carousel/free-carousel.component';
 
-
 interface Item {
+  id: number,
   title: string,
   body: string,
   thumbnail: {
@@ -38,7 +38,9 @@ export class IndexComponent implements OnInit {
         .pipe(
           map(products => products.map<Item>(
             product => (
-              { title: product.title, 
+              { 
+                id: product.id,
+                title: product.title, 
                 body: product.description,
                 thumbnail: { alt: product.category, src: product.image }
               })
