@@ -17,4 +17,40 @@
     img {
         max-width: 100%;
     }
+
+    #last {
+        padding: 20px;
+        .card {
+            border-radius: 10px;
+            border: 1px solid rgb(85, 85, 85);
+            height: 100%;
+            padding: 10px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .shop-buttons {
+                >button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.price-container {
+    padding-left: 20px;
+    padding-top: 20px;
+
+    span {
+        font: {
+            size: 50px;
+            weight: 2;
+        }
+    }
+}
+
+.mt {
+    margin-top: 20px;
 }

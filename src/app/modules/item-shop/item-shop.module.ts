@@ -5,6 +5,7 @@ import { ItemShopRoutingModule } from './item-shop-routing.module';
 import { ItemShopComponent } from './components/item-shop/item-shop.component';
 import { NgLetDirective } from '@common/directives/ng-let.directive';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
   imports: [
     CommonModule,
     ItemShopRoutingModule,
-    NgLetDirective
+    MatButtonModule,
+    NgLetDirective,
   ]
 })
 export class ItemShopModule { }

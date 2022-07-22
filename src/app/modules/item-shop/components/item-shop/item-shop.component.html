@@ -2,10 +2,35 @@
 <div class="container">
     <div class="grid" *ngLet="product$ | async as product">
         <img [src]="product.image" [alt]="product.title">
-        <div class="">
+        <div id="mid">
             <h2>{{ product.title }}</h2>
             <app-star-rating [points]="product.rating.rate" [count]="product.rating.count"></app-star-rating>
+            <p class="mt"><b>Category:</b><span> {{ product.category | titlecase }}</span></p>
+
+            <h4 class="mt">About this product</h4>
             <p>{{ product.description }}</p>
+
+            <div class="price-container">
+                <span>{{ product.price | currency: 'USD' }}</span>
+            </div>
+        </div>
+        <div id="last">
+            <div class="card">
+                <div class="">
+                    <p><b>Price:</b> {{ product.price | currency: 'USD' }}</p>
+                    <p><b>Title: </b> {{ product.title }}</p>
+                    <p class="mt"><b>Category:</b><span> {{ product.category | titlecase }}</span></p>
+                </div>
+                <div class="shop-buttons">
+                    <button mat-stroked-button>Buy Now!</button>
+                    <button mat-stroked-button>Add to cart</button>
+                    <button mat-stroked-button>Add to wishes list</button>
+                </div>
+            </div>
         </div>
     </div>
+    <hr>
+    <section>
+        <h2 class="mt">Customer's Questions</h2>
+    </section>
 </div>
