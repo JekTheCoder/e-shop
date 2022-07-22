@@ -19,4 +19,4 @@
 <ng-template #chip>
     <div class="point"></div>
 </ng-template>
-<app-chips-controller class="points-container" [chipSelected]="position" [chipRef]="chip" [items]="items.length" (chipClicked)="moveTo($event)"></app-chips-controller>
+<app-chips-controller class="points-container" [chipTemplate]="chip" [chip]="position" (chipChange)="moveTo($event)" [numberOfChips]="items.length"></app-chips-controller>

@@ -1,6 +1,6 @@
-<ng-container *ngFor="let item of items">
-    <div (click)="chipClicked(item)" 
-        [@chipAnimation]="chipSelected !== item ? 'no-selected' : 'selected'">
-        <ng-template  [ngTemplateOutlet]="chipRef"></ng-template>
+<ng-container *ngFor="let i of numberOfChipsList">
+    <div (click)="setChip(i)" 
+        [@chipAnimation]="chip !== i? 'no-selected' : 'selected'">
+        <ng-template  [ngTemplateOutlet]="chipTemplate"></ng-template>
     </div>
 </ng-container>
