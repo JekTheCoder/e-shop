@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
 import { FakeStoreService } from '@main/services/fake-store.service';
 import { WindowSizeService } from '@common/services/window-size.service';
+import { FreeCarouselComponent } from '@carousel/components/free-carousel/free-carousel.component';
 
 
 interface Item {
@@ -21,14 +22,14 @@ interface Item {
 })
 export class IndexComponent implements OnInit {
 
-  freePosition = 0;
+  @ViewChild(FreeCarouselComponent) freeCarousel?: FreeCarouselComponent;
+
 
   items$?: Observable<Item[]>;
   itemsShown?: Observable<number>;
 
   constructor(
     private store: FakeStoreService,
-    private windowSize: WindowSizeService
     ) { }
 
   ngOnInit(): void {
@@ -43,13 +44,6 @@ export class IndexComponent implements OnInit {
               })
           ))
         );
-
-    this.windowSize.windowSize$;
-  }
-
-  next() {
-    console.log(this.freePosition);
-    this.freePosition += 1;
   }
 
 }

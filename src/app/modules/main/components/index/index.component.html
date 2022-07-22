@@ -20,11 +20,17 @@
 
 <section id="second-section">
     <h3>HOT SALE</h3>
-    <app-free-carousel class="carousel" [delay]="false" *ngIf="items$ | async as items" [position]="freePosition">
+    <app-free-carousel #freeCarousel class="carousel" [delay]="false" *ngIf="items$ | async as items" [steps]="3">
         <app-carousel-item *ngFor="let item of items">
             <app-item-card [title]="item.title" [body]="item.body" [thumbnail]="item.thumbnail"></app-item-card>
         </app-carousel-item>
-        
     </app-free-carousel>
-    <button (click)="next()">next</button>
+    <div class="button-group" *ngIf="freeCarousel">
+        <button mat-icon-button (click)="freeCarousel.previous()">
+            <mat-icon>navigate_before</mat-icon>
+        </button>
+        <button mat-icon-button (click)="freeCarousel.next()">
+            <mat-icon>navigate_next</mat-icon>
+        </button>
+    </div>
 </section>

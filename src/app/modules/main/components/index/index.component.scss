@@ -47,4 +47,9 @@ section {
             padding: 30px 10px;
         }
     }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+    }
 }
