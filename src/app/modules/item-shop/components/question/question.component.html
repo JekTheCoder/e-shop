@@ -1,0 +1,20 @@
+<div class="votes-container">
+    <mat-icon>keyboard_arrow_up</mat-icon>
+    <span>{{ votes }}</span>
+    <mat-icon>keyboard_arrow_down</mat-icon>
+</div>
+<div class="content">
+    <p>Q:</p>
+    <b>{{ question.content }}</b>
+    <p>A:</p>
+    <div class="" *ngIf="answers.length !== 0; else noAnswers">
+        <div class="" *ngFor="let answer of answers">
+            <p>{{ answer.content }}</p>
+            <p>by {{ answer.user }}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #noAnswers>
+    <p>No answers</p>
+</ng-template>

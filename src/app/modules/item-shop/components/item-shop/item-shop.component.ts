@@ -12,6 +12,13 @@ export class ItemShopComponent implements OnInit {
 
   product$?: Observable<Product | null>;
 
+  question = {
+    content: 'aodawoddwadwadawdwa',
+    user: 'awdawdaw',
+    question: 'dawdawdawrfqwawaeaw',
+    date: new Date()
+  }
+
   constructor(
     protected fs: FakeStoreService,
     protected route: ActivatedRoute,
