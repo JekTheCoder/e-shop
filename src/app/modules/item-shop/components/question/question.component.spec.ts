@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuestionComponent } from './question.component';
@@ -8,16 +9,24 @@ describe('QuestionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuestionComponent ]
+      declarations: [ QuestionComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(QuestionComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    component.question = {
+      content: '',
+      date: new Date(),
+      user: ''
+    };
+
+    fixture.detectChanges();
+
     expect(component).toBeTruthy();
   });
 });
