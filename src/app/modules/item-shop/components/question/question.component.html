@@ -7,8 +7,8 @@
     <p>Q:</p>
     <b>{{ question.content }}</b>
     <p>A:</p>
-    <div class="" *ngIf="answers.length !== 0; else noAnswers">
-        <div class="" *ngFor="let answer of answers">
+    <div class="" *ngIf="question.answers.length !== 0; else noAnswers">
+        <div class="" *ngFor="let answer of question.answers">
             <p>{{ answer.content }}</p>
             <p>by {{ answer.user }}</p>
         </div>

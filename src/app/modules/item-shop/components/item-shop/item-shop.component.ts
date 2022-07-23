@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FakeStoreService, Product } from '@common/services/fake-store.service';
-import { Observable, switchMap, tap } from 'rxjs';
+import { FakeStoreService, Product, Question } from '@common/services/fake-store.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-item-shop',
@@ -11,13 +11,7 @@ import { Observable, switchMap, tap } from 'rxjs';
 export class ItemShopComponent implements OnInit {
 
   product$?: Observable<Product | null>;
-
-  question = {
-    content: 'aodawoddwadwadawdwa',
-    user: 'awdawdaw',
-    question: 'dawdawdawrfqwawaeaw',
-    date: new Date()
-  }
+  questions$?: Observable<Question[]>;
 
   constructor(
     protected fs: FakeStoreService,
@@ -26,17 +20,16 @@ export class ItemShopComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.product$ = this.route.paramMap.pipe(
-      switchMap(params => {
-        const idStr = params.get('itemId');
-        console.log(idStr);
-        const id = Number(idStr);
-        return this.fs.getOne(id);
-      }),
-      tap(value => { 
-        if (!value) this.router.navigate(['/notfound'])
+    this.route.paramMap.pipe(
+       tap(params => {
+          const idStr = params.get('itemId');
+          if (!idStr) { this.router.navigate(['/notfound']); return }
+          const id = Number(idStr);
+
+          this.product$ = this.fs.getOne(id);
+          this.questions$ = this.fs.getQuestions(id);
        })
-    )
+    ).subscribe();
   }
 
 }

@@ -1,10 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-export interface Entry {
-  user: string,
-  date: Date,
-  content: string
-}
+import { Question } from '@common/services/fake-store.service';
 
 @Component({
   selector: 'app-question',
@@ -13,9 +8,7 @@ export interface Entry {
 })
 export class QuestionComponent implements OnInit {
 
-  @Input() question!: Entry;
-  @Input() answers: Entry[] = [];
-  @Input() id!: number;
+  @Input() question!: Question;
 
   protected votes = 0;
   

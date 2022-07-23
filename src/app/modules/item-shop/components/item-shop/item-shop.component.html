@@ -1,6 +1,6 @@
 <div class="separator"></div>
 <div class="container">
-    <div class="grid" *ngLet="product$ | async as product">
+    <div class="grid" *ngIf="product$ | async as product">
         <img [src]="product.image" [alt]="product.title">
         <div id="mid">
             <h2>{{ product.title }}</h2>
@@ -30,9 +30,8 @@
         </div>
     </div>
     <hr>
-    <section>
+    <section *ngIf="questions$">
         <h2 class="mt">Customer's Questions</h2>
-
-        <app-question (votes)="2" [question]="question"></app-question>
+        <app-question *ngFor="let question of questions$ | async" [question]="question"></app-question>
     </section>
 </div>
