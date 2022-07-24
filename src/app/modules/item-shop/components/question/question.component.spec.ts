@@ -19,10 +19,13 @@ describe('QuestionComponent', () => {
   });
 
   it('should create', () => {
-    component.question = {
+    component.questionSetter = {
       content: '',
       date: new Date(),
-      user: ''
+      user: '',
+      answers: [],
+      id: 0,
+      votes: 0
     };
 
     fixture.detectChanges();

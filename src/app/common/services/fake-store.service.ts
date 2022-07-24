@@ -23,7 +23,8 @@ export interface Answer {
 }
 
 export interface Question extends Answer {
-  answers: Answer[]
+  answers: Answer[],
+  votes: number
 }
 
 @Injectable({
@@ -43,11 +44,11 @@ export class FakeStoreService {
     let params: { limit?: number } = {};
     if (limit) params.limit = limit;
 
-    return this.http.get<Product[]>(this.baseUrl+'/products', { params })
+    return this.http.get<Product[]>(this.baseUrl + '/products', { params })
   }
 
   getOne(id: number) {
-    return this.http.get<Product | null>(this.baseUrl+'/products/'+id)
+    return this.http.get<Product | null>(this.baseUrl + '/products/' + id)
   }
 
   getQuestions(productId: number): Observable<Question[]> {
@@ -57,13 +58,15 @@ export class FakeStoreService {
         user: 'user1',
         date: new Date(),
         content: 'lorem',
-        answers: []
+        answers: [],
+        votes: 0
       },
       {
         id: 2,
         user: 'user2',
         date: new Date(),
         content: 'ipsum',
+        votes: 0,
         answers: [{
           id: 5,
           user: 'user4',
@@ -76,8 +79,13 @@ export class FakeStoreService {
         user: 'user3',
         date: new Date(),
         content: 'latin',
+        votes: 0,
         answers: []
       }
     ])
+  }
+
+  rateQuestion(id: number, rate: boolean): Observable<{ response: boolean, votes: number }> {
+    return of({ response: true, votes: Math.floor(Math.random()*200) });
   }
 }

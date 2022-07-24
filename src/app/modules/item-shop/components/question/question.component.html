@@ -1,9 +1,13 @@
 <div class="votes-container">
-    <mat-icon>keyboard_arrow_up</mat-icon>
-    <span>{{ votes }}</span>
-    <mat-icon>keyboard_arrow_down</mat-icon>
+    <button mat-icon-button (click)="rate(true)" [color]="vote === true ? 'primary' : ''">
+        <mat-icon>keyboard_arrow_up</mat-icon>
+    </button>
+    <span>{{ votes$ | async }}</span>
+    <button mat-icon-button (click)="rate(false)" [color]="vote === false ? 'primary' : ''">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
 </div>
-<div class="content">
+<div class="content" *ngIf="question">
     <p>Q:</p>
     <b>{{ question.content }}</b>
     <p>A:</p>

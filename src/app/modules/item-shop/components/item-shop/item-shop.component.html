@@ -30,8 +30,10 @@
         </div>
     </div>
     <hr>
-    <section *ngIf="questions$">
+    <section>
         <h2 class="mt">Customer's Questions</h2>
-        <app-question *ngFor="let question of questions$ | async" [question]="question"></app-question>
+        <ng-container *ngIf="questions$ | async as questions">
+            <app-question *ngFor="let question of questions" [question]="question"></app-question>
+        </ng-container>
     </section>
 </div>
