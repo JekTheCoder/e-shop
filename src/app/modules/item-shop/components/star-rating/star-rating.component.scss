@@ -1,6 +1,6 @@
 :host {
-    display: flex;
-    width: 200px;
+    display: inline-block;
+    padding: 1rem 0;
 }
 
 .star {
@@ -21,4 +21,30 @@
             }
         }
     }   
+}
+
+.stars {
+    position: relative;
+    white-space: nowrap;
+    display: inline-block;
+
+    margin-right: 10px;
+
+    svg {
+        width: 20px;
+        fill: gold;
+    }
+}
+  
+.cover {
+    background: white;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    mix-blend-mode: color;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    padding: inherit;
 }
