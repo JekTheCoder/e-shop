@@ -16,6 +16,7 @@ export class QuestionComponent implements OnDestroy {
   protected unsuscriber$ = new Subject<void>();
 
   protected vote: boolean | null = null;
+  protected answersSeen = 1;
 
   constructor(protected store: FakeStoreService) { }
 
@@ -40,5 +41,12 @@ export class QuestionComponent implements OnDestroy {
       });
   }
 
-  
+  seeMoreAnswers() {
+    console.log(2)
+    this.answersSeen += 2;
+    this.answersSeen = Math.min(this.answersSeen, this.question!.answers.length);
+  }
+  collapseAnswers() {
+    this.answersSeen = 1;
+  }
 } 

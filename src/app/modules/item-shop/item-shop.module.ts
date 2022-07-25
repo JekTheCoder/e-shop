@@ -8,13 +8,15 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { MatButtonModule } from '@angular/material/button';
 import { QuestionComponent } from './components/question/question.component';
 import { MatIconModule } from '@angular/material/icon';
+import { AnswerComponent } from './components/answer/answer.component';
 
 
 @NgModule({
   declarations: [
     ItemShopComponent,
     StarRatingComponent,
-    QuestionComponent
+    QuestionComponent,
+    AnswerComponent
   ],
   imports: [
     CommonModule,

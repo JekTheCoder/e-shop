@@ -11,11 +11,15 @@
     <p>Q:</p>
     <b>{{ question.content }}</b>
     <p>A:</p>
-    <div class="" *ngIf="question.answers.length !== 0; else noAnswers">
-        <div class="" *ngFor="let answer of question.answers">
+    <div class="answers-container" *ngIf="question.answers.length !== 0; else noAnswers">
+        <app-answer *ngFor="let answer of question.answers | slice: 0:answersSeen" [answer]="answer">
             <p>{{ answer.content }}</p>
-            <p>by {{ answer.user }}</p>
-        </div>
+            <p class="author">by {{ answer.user }} on {{ answer.date | date }}</p>
+        </app-answer>
+        <div (click)="seeMoreAnswers()" *ngIf="answersSeen < question.answers.length; else collapse">See more -></div>
+        <ng-template #collapse>
+            <div class="" (click)="collapseAnswers()">Collapse All</div>
+        </ng-template>
     </div>
 </div>
 

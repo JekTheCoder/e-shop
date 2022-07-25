@@ -1,0 +1,13 @@
+<ng-container *ngIf="answer">
+    <div class="">
+        <p>{{ answer.content | slice:0:length }}</p>
+        <div *ngIf="overflowed">
+            <span class="text-clickable" (click)="collapseToggle()" *ngIf="!collapsed; else seeMore">see less</span>
+        </div>
+    </div>
+    <p class="author">by {{ answer.user }} on {{ answer.date | date }}</p>
+</ng-container>
+
+<ng-template #seeMore>
+    <span>...</span> <span class="text-clickable" (click)="collapseToggle()">see more</span>
+</ng-template>
