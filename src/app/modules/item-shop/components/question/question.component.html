@@ -9,16 +9,15 @@
 </div>
 <div class="content" *ngIf="question">
     <p>Q:</p>
-    <b>{{ question.content }}</b>
+    <p><b>{{ question.content }}</b><span class="author"> by {{ question.user }} on {{ question.date | date }}</span></p>
     <p>A:</p>
     <div class="answers-container" *ngIf="question.answers.length !== 0; else noAnswers">
-        <app-answer *ngFor="let answer of question.answers | slice: 0:answersSeen" [answer]="answer">
-            <p>{{ answer.content }}</p>
-            <p class="author">by {{ answer.user }} on {{ answer.date | date }}</p>
-        </app-answer>
-        <div (click)="seeMoreAnswers()" *ngIf="answersSeen < question.answers.length; else collapse">See more -></div>
+        <app-answer *ngFor="let answer of question.answers | slice: 0:answersSeen" [answer]="answer"></app-answer>
+        <ng-container *ngIf="overflowed">          
+            <div class="text-clickable" (click)="seeMoreAnswers()" *ngIf="answersSeen < question.answers.length; else collapse">See more -></div>
+        </ng-container>
         <ng-template #collapse>
-            <div class="" (click)="collapseAnswers()">Collapse All</div>
+            <div class="text-clickable" (click)="collapseAnswers()">Collapse All</div>
         </ng-template>
     </div>
 </div>
