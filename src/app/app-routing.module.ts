@@ -13,10 +13,14 @@ const routes: Routes = [
     loadChildren: () => (import ('./modules/item-shop/item-shop.module')).then(m => m.ItemShopModule)
   },
   {
+    path: 'search',
+    loadChildren: () => (import('./modules/products-searcher/products-searcher.module').then(m => m.ProductsSearcherModule))
+  },
+  {
     path: '**',
     pathMatch: 'full',
     component: NotFoundComponent
-  }
+  },
 ];
 
 @NgModule({
