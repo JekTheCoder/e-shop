@@ -63,4 +63,21 @@ footer {
     $background-color: mat.get-color-from-palette($accent-palette);
     background-color: $background-color;
     height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span, a  {
+        color: #fff;
+        font-weight: 500;
+    }
+
+    a {
+        font-weight: 600;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }   
+    }
 }
