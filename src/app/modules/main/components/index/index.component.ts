@@ -21,8 +21,7 @@ interface Item {
 })
 export class IndexComponent implements OnInit {
 
-  @ViewChild(FreeCarouselComponent) freeCarousel?: FreeCarouselComponent;
-
+  @ViewChild(FreeCarouselComponent) freeCarousel!: FreeCarouselComponent;
 
   items$?: Observable<Item[]>;
   itemsShown?: Observable<number>;
