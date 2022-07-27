@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,19 +12,31 @@ import { buttonAnimation, inputAnimation } from './product-input.animations'
   styleUrls: ['./product-input.component.scss'],
   standalone: true,
   imports: [
+    ReactiveFormsModule,
     MatIconModule,
     MatButtonModule
   ],
   animations: [buttonAnimation, inputAnimation]
 })
-export class ProductInputComponent implements OnInit {
+export class ProductInputComponent {
+
+  @Input() value: string = '';
+  @Output() valueChange = new EventEmitter<string>();
 
   @Input()
   opened: boolean = false
 
-  constructor() { }
+  protected input: FormControl;
 
-  ngOnInit(): void {
+  constructor(fb: FormBuilder) {
+    this.input = fb.nonNullable.control('');
+
+  }
+
+  button() {
+    if (!this.opened) { this.opened = true; return; }
+
+    this.valueChange.emit(this.value);
   }
 
 }

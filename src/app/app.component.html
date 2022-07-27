@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="">
-        <app-product-input [opened]="false"></app-product-input>
+        <app-product-input [opened]="false" (valueChange)="redirectToSearch($event)"></app-product-input>
     </div>
 </header>
 <main>
