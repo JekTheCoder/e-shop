@@ -12,4 +12,7 @@ export class ProductsSearcherComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  test(value: string) {
+    console.log('recieved', value)
+  }
 }
