@@ -20,7 +20,8 @@ export class ProductsSearcherComponent implements OnInit {
   search(value: string) {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { value }
+      queryParams: { value },
+      queryParamsHandling: 'merge'
     });
   }
 }
