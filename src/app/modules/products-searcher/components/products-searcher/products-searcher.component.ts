@@ -42,7 +42,8 @@ export class ProductsSearcherComponent implements OnInit, OnDestroy {
   protected filterProducts(products: Product[], filters: Filters) {
     return products.filter(product => (
       product.title.toLowerCase().includes((filters.title || '').toLowerCase()) &&
-      ((!filters.categories || filters.categories!.length === 0) || Boolean(filters.categories!.find(category => category.toLowerCase() === product.category)))
+      ((!filters.categories || filters.categories!.length === 0) || Boolean(filters.categories!.find(category => category.toLowerCase() === product.category))) &&
+      ((!filters.priceRange) || (product.price >= (filters.priceRange[0] || 0) || product.price <= (filters.priceRange[1] || Number.POSITIVE_INFINITY)))
     )
     )
   }

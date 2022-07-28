@@ -1,7 +1,8 @@
 <form [formGroup]="form">
-    <mat-form-field >
+    <mat-form-field>
         <mat-select [multiple]="true" formControlName="categories">
             <mat-option *ngFor="let category of categories$ | async" [value]="category">{{ category | titlecase }}</mat-option>
         </mat-select>
     </mat-form-field>
+    <input type="text" multiple formControlName="priceRange">
 </form>

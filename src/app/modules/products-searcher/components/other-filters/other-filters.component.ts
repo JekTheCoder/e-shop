@@ -5,7 +5,7 @@ import { FormGroupObject } from '@common/types/form-group';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { Filters } from '../../interfaces/filters.interface';
 
-type OtherFilters = Omit<Filters, 'title'> & { categories: string[] };
+type OtherFilters = Omit<Filters, 'title'> & { categories: string[], priceRange: [number | null, number | null] };
 
 type OtherFiltersFormGroup = FormGroupObject<OtherFilters>;
 
@@ -19,7 +19,8 @@ export class OtherFiltersComponent implements OnInit, OnDestroy {
   @Output() otherFiltersChanges = new EventEmitter<OtherFilters>();
 
   form: FormGroup = new FormGroup<OtherFiltersFormGroup>({
-    categories: new FormControl<string[]>([], { nonNullable: true })
+    categories: new FormControl<string[]>([], { nonNullable: true }),
+    priceRange: new FormControl<[number | null, number | null]>([null, null], { nonNullable: true })
   })
 
   protected unsuscriber$ = new Subject<void>();
