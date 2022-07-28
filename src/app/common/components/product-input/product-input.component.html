@@ -1,5 +1,5 @@
 <div class="input-container" [@inputAnim]="opened? 'opened':'closed'">
-    <input type="text" [formControl]="input">
+    <input type="text" [formControl]="input" (keydown.enter)="button()">
 </div>
 <div class="custom-button">
     <button mat-mini-fab class="custom-c" [@buttonAnim]="opened? 'open':'closed' " (click)="button()" >
