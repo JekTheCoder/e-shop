@@ -40,7 +40,7 @@ export class FakeStoreService {
    * 
    * @param {number | flase} limit: number of products to get
    */
-  getSomeProducts(limit: number | false = false) {
+  getSomeProducts(limit: number | false = false, categories: string[] = []) {
     let params: { limit?: number } = {};
     if (limit) params.limit = limit;
 
@@ -102,5 +102,9 @@ export class FakeStoreService {
 
   rateQuestion(id: number, rate: boolean): Observable<{ response: boolean, votes: number }> {
     return of({ response: true, votes: Math.floor(Math.random()*200) });
+  }
+
+  getCategories() {
+    return this.http.get<string[]>(`${this.baseUrl}/products/categories`)
   }
 }

@@ -1,7 +1,9 @@
 <div class="mt"></div>
 
 <div class="grid">
-    <div class="left"></div>
+    <div class="left">
+        <app-other-filters (otherFiltersChanges)="addFilters($event)"></app-other-filters>
+    </div>
     <div class="center">
         <div class="up">
             <div class="search">
@@ -9,10 +11,7 @@
             </div>
         </div>
         <div class="products">
-            <ng-container *ngIf="productsFiltered$"></ng-container>
-            <div class="label" *ngFor="let product of productsFiltered$ | async">
-                {{ product | json }}
-            </div>
+            <app-product-label *ngFor="let product of productsFiltered$ | async" [product]="product"></app-product-label>
         </div>
     </div>
     <div class="right"></div>

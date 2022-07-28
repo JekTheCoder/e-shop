@@ -54,4 +54,14 @@ export class ProductsSearcherComponent implements OnInit, OnDestroy {
       queryParamsHandling: 'merge'
     });
   }
+
+  addFilters(filters: Filters) {
+    console.log(filters);
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { ...filters },
+      queryParamsHandling: 'merge'
+    });
+  }
 }
