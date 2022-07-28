@@ -1,8 +1,12 @@
 <div class="mt"></div>
-<div class="search">
-    <app-search-bar (valueChange)="test($event)"></app-search-bar>
-</div>
 
-<div class="container">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum quaerat error consequatur ullam odit cum nulla eos, vitae nemo. Harum maiores repudiandae quisquam. Dolorum assumenda minus fugit vitae tempora pariatur?
+<div class="grid">
+    <div class="left"></div>
+    <div class="center">
+        <div class="search">
+            <app-search-bar (valueChange)="search($event)"></app-search-bar>
+        </div>
+
+    </div>
+    <div class="right"></div>
 </div>

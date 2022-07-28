@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-searcher',
@@ -7,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsSearcherComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected router: Router, protected route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
 
   test(value: string) {
     console.log('recieved', value)
+  }
+
+  search(value: string) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { value }
+    });
   }
 }

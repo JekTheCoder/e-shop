@@ -1,0 +1,19 @@
+:host {
+    display: grid;
+    grid-template-columns: 1fr 40px;
+}
+
+input {
+    height: 30px;
+    
+    border: none;
+    outline: rgb(119, 119, 119) 1px solid;
+
+    border-radius: 20px;
+    padding: 0 10px;
+
+    &:focus {
+        outline: #000 2px solid;
+    }
+}
+

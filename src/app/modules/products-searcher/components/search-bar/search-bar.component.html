@@ -1,2 +1,4 @@
-<input type="text" name="name" [formControl]="form">
-<button type="submit" (click)="submit()">Search</button>
+<input type="text" name="name" [formControl]="form" (keypress.enter)="submit()">
+<button mat-mini-fab [color]="color" type="submit" (click)="submit()">
+    <mat-icon>search</mat-icon>
+</button>

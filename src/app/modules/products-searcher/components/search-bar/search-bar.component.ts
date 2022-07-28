@@ -11,9 +11,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   @Input() color = '';
 
+  @Input('value') set valueSetter(value: string) { this.form.setValue(value); };
   @Output() valueChange = new EventEmitter<string>();
 
-  protected form: FormControl;
+  protected form: FormControl<string>;
   protected unsuscriber$ = new Subject<void>();
 
   constructor(fb: FormBuilder) {
@@ -26,6 +27,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('CREATING')
   }
 
   ngOnDestroy(): void {
@@ -34,7 +36,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   submit() {
-
+    this.valueChange.emit(this.form.value);
   }
 
 }
