@@ -12,6 +12,6 @@ export class AppComponent {
   constructor(protected router: Router) {}
 
   redirectToSearch(search: string) {
-    this.router.navigate(['search'], { queryParams: { value: search } });
+    this.router.navigate(['search'], { queryParams: { title: search } });
   }
 }
