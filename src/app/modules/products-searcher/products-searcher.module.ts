@@ -8,13 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { OtherFiltersComponent } from './components/other-filters/other-filters.component';
+import { ProductLabelComponent } from './components/product-label/product-label.component';
 
 
 @NgModule({
   declarations: [
     ProductsSearcherComponent,
     SearchBarComponent,
-    OtherFiltersComponent
+    OtherFiltersComponent,
+    ProductLabelComponent
   ],
   imports: [
     CommonModule,
