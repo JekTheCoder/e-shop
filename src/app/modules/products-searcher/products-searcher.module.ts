@@ -7,12 +7,14 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { OtherFiltersComponent } from './components/other-filters/other-filters.component';
 
 
 @NgModule({
   declarations: [
     ProductsSearcherComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    OtherFiltersComponent
   ],
   imports: [
     CommonModule,

@@ -2,11 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FakeStoreService, Product } from '@common/services/fake-store.service';
 import { map, mergeMap, Observable, ReplaySubject, Subject, takeUntil, tap } from 'rxjs';
-
-interface Filters {
-  title?: string | null,
-  categories?: string[]
-}
+import { Filters } from '../../interfaces/filters.interface';
 
 @Component({
   selector: 'app-products-searcher',
