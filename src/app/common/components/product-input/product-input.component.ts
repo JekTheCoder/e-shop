@@ -20,13 +20,13 @@ import { buttonAnimation, inputAnimation } from './product-input.animations'
 })
 export class ProductInputComponent {
 
-  @Input() value: string = '';
+  @Input('value') set valueSetter(value: string) { this.input.setValue(value); }
   @Output() valueChange = new EventEmitter<string>();
 
   @Input()
   opened: boolean = false
 
-  protected input: FormControl;
+  protected input: FormControl<string>;
 
   constructor(fb: FormBuilder) {
     this.input = fb.nonNullable.control('');
@@ -36,7 +36,7 @@ export class ProductInputComponent {
   button() {
     if (!this.opened) { this.opened = true; return; }
 
-    this.valueChange.emit(this.value);
+    this.valueChange.emit(this.input.value);
   }
 
 }
