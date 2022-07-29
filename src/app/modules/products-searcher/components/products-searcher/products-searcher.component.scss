@@ -10,4 +10,11 @@
 .grid {
     display: grid;
     grid-template-columns: 400px 60vw 1fr;
+
+    .left {
+        >* {
+            position: sticky;
+            top: 40px;
+        }
+    }
 }

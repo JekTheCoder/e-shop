@@ -5,7 +5,14 @@
         </mat-select>
     </mat-form-field>
     <div formArrayName="priceRange">
-        <input formControlName="0" type="number">
-        <input formControlName="1" type="number">
+        <mat-form-field>
+            <mat-label>Min Price: </mat-label>
+            <input matInput formControlName="0" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Max Price</mat-label>
+            <input matInput formControlName="1" type="number">
+        </mat-form-field>
     </div>
 </form>
