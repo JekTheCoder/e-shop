@@ -1,2 +1,7 @@
-<b>{{ product.title }}</b>
-<p>{{ product.price | currency:'USD' }}</p>
+<div class="left">
+    <img [src]="product.image" alt="">
+</div>
+<div class="right">
+    <b>{{ product.title }}</b>
+    <p>{{ product.price | currency:'USD' }}</p>
+</div>
