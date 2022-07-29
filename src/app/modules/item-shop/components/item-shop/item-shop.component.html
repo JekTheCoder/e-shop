@@ -1,7 +1,9 @@
 <div class="separator"></div>
 <div class="container">
     <div class="grid" *ngIf="product$ | async as product">
-        <img [src]="product.image" [alt]="product.title">
+        <div class="img">
+            <img [src]="product.image" [alt]="product.title">
+        </div>
         <div id="mid">
             <h2>{{ product.title }}</h2>
             <app-star-rating [points]="product.rating.rate" [count]="product.rating.count"></app-star-rating>
