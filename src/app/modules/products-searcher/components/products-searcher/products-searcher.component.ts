@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FakeStoreService, Product } from '@common/services/fake-store.service';
-import { map, mergeMap, Observable, ReplaySubject, Subject, takeUntil, tap } from 'rxjs';
+import { map, mergeMap, Observable, ReplaySubject, Subject, take, takeUntil, tap } from 'rxjs';
 import { Filters } from '../../interfaces/filters.interface';
 import { ProductFilterService } from '../../services/product-filter.service';
 
@@ -16,6 +16,8 @@ export class ProductsSearcherComponent implements OnInit, OnDestroy {
   protected filters$ = new ReplaySubject<Filters>(1);
 
   protected unsuscriber$ = new Subject<void>();
+
+  protected anotherFiltersInit$?: Observable<Omit<Filters, 'title'>>
 
   constructor(
     protected router: Router,
@@ -34,13 +36,17 @@ export class ProductsSearcherComponent implements OnInit, OnDestroy {
 
           return ({
             title: params.get('title') || undefined,
-            priceRange: [Number(strPriceRange[0]), Number(strPriceRange[1])],
+            priceRange: [Number(strPriceRange[0]) || null , Number(strPriceRange[1]) || null],
             categories: params.getAll('categories')
           })
         }),
         takeUntil(this.unsuscriber$)
       )
       .subscribe(this.filters$)
+    
+    this.anotherFiltersInit$ = 
+      this.filters$
+        .pipe(map(filters => ({ categories: filters.categories, priceRange: filters.priceRange })), take(1));
 
     this.productsFiltered$ =
       this.store.getSomeProducts()
@@ -59,16 +65,10 @@ export class ProductsSearcherComponent implements OnInit, OnDestroy {
   }
 
   search(value: string) {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { title: value },
-      queryParamsHandling: 'merge'
-    });
+    this.addFilters({ title: value });
   }
 
   addFilters(filters: Filters) {
-    console.log(filters);
-
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { ...filters },

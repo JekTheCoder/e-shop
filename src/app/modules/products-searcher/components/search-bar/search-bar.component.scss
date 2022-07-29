@@ -1,6 +1,8 @@
 :host {
     display: grid;
+    position: relative;
     grid-template-columns: 1fr 40px;
+    gap: 10px;
 }
 
 input {
@@ -17,3 +19,8 @@ input {
     }
 }
 
+button {
+    position: absolute;
+    top: -5px;
+    right: 0;
+}

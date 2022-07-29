@@ -1,3 +1,9 @@
+:root {
+    --window-break: 1000px;
+}
+
+$window-break: var(--window-break);
+
 .mt {
     margin-top: 70px;
 }
@@ -15,6 +21,29 @@
         >* {
             position: sticky;
             top: 40px;
+        }
+    }
+
+    .up {
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 1020px) {
+    .grid {
+        grid-template-columns: 100%;
+        grid-template-rows: auto 1fr 1fr;
+
+        ::ng-deep .left>app-other-filters {
+            form {
+                padding: 0 10%;
+            }
+        }
+
+        .center .up {
+            .search {
+                padding: 0 6%;
+            }
         }
     }
 }
