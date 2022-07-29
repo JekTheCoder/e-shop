@@ -6,5 +6,6 @@
 <div class="right">
     <p><a [routerLink]="['/shop', product.id]"><b>{{ product.title }}</b></a></p>
     <p><app-star-rating [points]="product.rating.rate" [count]="product.rating.count"></app-star-rating></p>
+    <p class="category">{{ product.category | titlecase }}</p>
     <p>{{ product.price | currency:'USD' }}</p>
 </div>
