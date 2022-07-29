@@ -60,6 +60,18 @@ header {
     }
 }
 
+main {
+    min-height: 90vh;
+
+    
+    transition: background-color .2s ease-in-out;
+    background-color: $theme-background;
+
+    &.dark-theme {
+        background-color: $dark-theme-background;
+    }
+}
+
 footer {
     $background-color: mat.get-color-from-palette($accent-palette);
     background-color: $background-color;

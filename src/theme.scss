@@ -11,4 +11,16 @@ $theme: mat.define-light-theme((
     )
 ));
 
+$dark-theme: mat.define-dark-theme((
+  color: (
+      primary: $primary-palette,
+      accent: $accent-palette,
+      warn: $warn-palette,
+    )
+));
+
 @include mat.all-component-themes($theme);
+
+.dark-theme {
+  @include mat.all-component-themes($theme);
+}

@@ -5,10 +5,14 @@
         </a>
     </div>
     <div class="">
+        <div class="">
+            <mat-slide-toggle color="accent" (change)="darkTheme.setDarkTheme($event.checked)" [checked]="initTheme$ | async"></mat-slide-toggle>
+        </div>
+
         <app-product-input [opened]="false" (valueChange)="redirectToSearch($event)"></app-product-input>
     </div>
 </header>
-<main>
+<main [ngClass]="{ 'dark-theme': (darkThemed$ | async) }">
     <router-outlet></router-outlet>    
 </main>
 <footer>

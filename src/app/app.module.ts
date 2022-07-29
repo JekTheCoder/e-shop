@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
 
 import { ProductInputComponent } from '@common/components/product-input/product-input.component';
 import { NotFoundComponent } from './app/components/not-found/not-found.component';
@@ -19,8 +21,10 @@ import { NotFoundComponent } from './app/components/not-found/not-found.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
     ProductInputComponent,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
