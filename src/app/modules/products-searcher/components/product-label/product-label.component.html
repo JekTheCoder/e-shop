@@ -1,8 +1,10 @@
 <div class="left">
-    <img [src]="product.image" alt="">
+    <a [routerLink]="['/shop', product.id]">
+        <img [src]="product.image" alt="">
+    </a>
 </div>
 <div class="right">
-    <b>{{ product.title }}</b>
+    <p><a [routerLink]="['/shop', product.id]"><b>{{ product.title }}</b></a></p>
     <p><app-star-rating [points]="product.rating.rate" [count]="product.rating.count"></app-star-rating></p>
     <p>{{ product.price | currency:'USD' }}</p>
 </div>
