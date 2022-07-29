@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DarkThemeService } from '@common/services/dark-theme.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item-card',
@@ -19,9 +21,12 @@ export class ItemCardComponent implements OnInit {
     src: ''
   }
 
-  constructor() { }
+  darkThemed$?: Observable<boolean>;
+
+  constructor(protected dark: DarkThemeService) { }
 
   ngOnInit(): void {
+    this.darkThemed$ = this.dark.getObs();
   }
 
 }

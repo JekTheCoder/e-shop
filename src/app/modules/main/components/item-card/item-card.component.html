@@ -1,4 +1,4 @@
-<a [routerLink]="url">
+<a [routerLink]="url" [ngClass]="{ 'dark-theme': (darkThemed$ | async) }">
     <header>
         <img [src]="thumbnail.src" [alt]="thumbnail.alt">
     </header>

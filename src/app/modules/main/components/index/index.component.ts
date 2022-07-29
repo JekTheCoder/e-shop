@@ -3,6 +3,7 @@ import { map, Observable } from 'rxjs';
 
 import { FakeStoreService } from '@common/services/fake-store.service';
 import { FreeCarouselComponent } from '@carousel/components/free-carousel/free-carousel.component';
+import { DarkThemeService } from '@common/services/dark-theme.service';
 
 interface Item {
   id: number,
@@ -26,11 +27,16 @@ export class IndexComponent implements OnInit {
   items$?: Observable<Item[]>;
   itemsShown?: Observable<number>;
 
+  darkTheme$?: Observable<boolean>;
+
   constructor(
     private store: FakeStoreService,
+    protected dark: DarkThemeService
     ) { }
 
   ngOnInit(): void {
+    this.darkTheme$ = this.dark.getObs();
+
     this.items$ = 
       this.store.getSomeProducts(0)
         .pipe(

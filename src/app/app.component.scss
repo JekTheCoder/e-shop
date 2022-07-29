@@ -65,10 +65,10 @@ main {
 
     
     transition: background-color .2s ease-in-out;
-    background-color: $theme-background;
+    background-color: mat.get-color-from-palette($background-palette);
 
     &.dark-theme {
-        background-color: $dark-theme-background;
+        background-color: mat.get-color-from-palette($dark-background-palette);
     }
 }
 

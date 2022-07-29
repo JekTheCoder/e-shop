@@ -1,9 +1,11 @@
+@use '@angular/material' as mat;
+@import 'theme-variables';
+
 a {
     display: grid;
     width: 280px;
     height: 400px;
 
-    background-color: #fff;
     border-radius: 16px;
 
     grid: 300px 1fr/100%;
@@ -13,13 +15,24 @@ a {
     color: inherit;
     cursor: auto;
 
-    $transition-time: 200ms;
-    transition: transform $transition-time, box-shadow $transition-time;
+    $transition-time: 200ms ease-in-out;
+    transition: transform $transition-time, box-shadow $transition-time, background-color $transition-time, color $transition-time;
 
     &:hover {
         transform: scale(1.1);
         box-shadow: 0 0 12px -4px rgba(0,0,0,0.63);
     }
+
+    background-color: #fff;
+
+    &.dark-theme {
+        background-color: mat.get-color-from-palette($dark-background-palette, 700);
+
+        &:hover {
+            box-shadow: 0 0 12px -4px rgba(241, 241, 241, 0.63);
+        }
+    }
+    
 }
 
 header {

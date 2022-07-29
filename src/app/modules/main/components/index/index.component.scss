@@ -32,7 +32,9 @@ section {
 }
 
 #second-section {
-    background-color: #fafafa;
+    &.dark-theme {
+        color: #fff;
+    }
 
     padding: 20px;
     >h3 {
