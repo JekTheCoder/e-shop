@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FakeStoreService, Product } from '@common/services/fake-store.service';
 import { map, mergeMap, Observable, ReplaySubject, Subject, takeUntil, tap } from 'rxjs';
 import { Filters } from '../../interfaces/filters.interface';
+import { ProductFilterService } from '../../services/product-filter.service';
 
 @Component({
   selector: 'app-products-searcher',
@@ -19,15 +20,27 @@ export class ProductsSearcherComponent implements OnInit, OnDestroy {
   constructor(
     protected router: Router,
     protected route: ActivatedRoute,
-    protected store: FakeStoreService
+    protected store: FakeStoreService,
+    protected filterSer: ProductFilterService
   ) { }
 
   ngOnInit(): void {
-    this.filters$.next({ categories: [] });
+    this.filters$.next({});
 
-    this.route.queryParams
-      .pipe(takeUntil(this.unsuscriber$))
-      .subscribe(queryParams => this.filters$.next(queryParams));
+    this.route.queryParamMap
+      .pipe(
+        map(params => {
+          const strPriceRange = params.getAll('priceRange');
+
+          return ({
+            title: params.get('title') || undefined,
+            priceRange: [Number(strPriceRange[0]), Number(strPriceRange[1])],
+            categories: params.getAll('categories')
+          })
+        }),
+        takeUntil(this.unsuscriber$)
+      )
+      .subscribe(this.filters$)
 
     this.productsFiltered$ =
       this.store.getSomeProducts()
@@ -41,11 +54,8 @@ export class ProductsSearcherComponent implements OnInit, OnDestroy {
 
   protected filterProducts(products: Product[], filters: Filters) {
     return products.filter(product => (
-      product.title.toLowerCase().includes((filters.title || '').toLowerCase()) &&
-      ((!filters.categories || filters.categories!.length === 0) || Boolean(filters.categories!.find(category => category.toLowerCase() === product.category))) &&
-      ((!filters.priceRange) || (product.price >= (filters.priceRange[0] || 0) || product.price <= (filters.priceRange[1] || Number.POSITIVE_INFINITY)))
-    )
-    )
+      this.filterSer.filterByTitle(product, filters.title) && this.filterSer.filterByCategory(product, filters.categories) && this.filterSer.filterByPriceRange(product, filters.priceRange)
+    ));
   }
 
   search(value: string) {

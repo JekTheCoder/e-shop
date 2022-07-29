@@ -1,5 +1,5 @@
 export interface Filters {
-    title?: string | null,
+    title?: string,
     categories?: string[],
-    priceRange?: [ number | null, number | null ]
+    priceRange?: (number | null)[]
   }

@@ -1,12 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { FakeStoreService } from '@common/services/fake-store.service';
 import { FormGroupObject } from '@common/types/form-group';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
 import { Filters } from '../../interfaces/filters.interface';
 
-type OtherFilters = Omit<Filters, 'title'> & { categories: string[], priceRange: [number | null, number | null] };
-
+type OtherFilters = Omit<Filters, 'title'>;
 type OtherFiltersFormGroup = FormGroupObject<OtherFilters>;
 
 @Component({
@@ -18,13 +17,15 @@ export class OtherFiltersComponent implements OnInit, OnDestroy {
 
   @Output() otherFiltersChanges = new EventEmitter<OtherFilters>();
 
-  form: FormGroup = new FormGroup<OtherFiltersFormGroup>({
+  form = new FormGroup<OtherFiltersFormGroup>({
     categories: new FormControl<string[]>([], { nonNullable: true }),
-    priceRange: new FormControl<[number | null, number | null]>([null, null], { nonNullable: true })
+    priceRange: new FormArray([
+      new FormControl(0),
+      new FormControl<number | null>(null)
+    ])
   })
 
   protected unsuscriber$ = new Subject<void>();
-
   protected categories$!: Observable<string[]>;
 
   constructor(protected store: FakeStoreService) {} 
@@ -32,7 +33,9 @@ export class OtherFiltersComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.categories$ = this.store.getCategories();
 
-    this.form.valueChanges.pipe(debounceTime(300), takeUntil(this.unsuscriber$)).subscribe(this.otherFiltersChanges);
+    this.form.valueChanges
+      .pipe(debounceTime(300), takeUntil(this.unsuscriber$))
+      .subscribe(this.otherFiltersChanges);
   }
 
   ngOnDestroy(): void {

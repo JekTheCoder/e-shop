@@ -4,5 +4,8 @@
             <mat-option *ngFor="let category of categories$ | async" [value]="category">{{ category | titlecase }}</mat-option>
         </mat-select>
     </mat-form-field>
-    <input type="text" multiple formControlName="priceRange">
+    <div formArrayName="priceRange">
+        <input formControlName="0" type="number">
+        <input formControlName="1" type="number">
+    </div>
 </form>
