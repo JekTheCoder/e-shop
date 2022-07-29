@@ -14,6 +14,7 @@ import { OtherFiltersComponent } from './components/other-filters/other-filters.
 import { ProductLabelComponent } from './components/product-label/product-label.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { StarRatingComponent } from '@common/components/star-rating/star-rating.component';
+import { RemoveFilterPipe } from './pipes/remove-filter.pipe';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { StarRatingComponent } from '@common/components/star-rating/star-rating.
     ProductsSearcherComponent,
     SearchBarComponent,
     OtherFiltersComponent,
-    ProductLabelComponent
+    ProductLabelComponent,
+    RemoveFilterPipe
   ],
   imports: [
     CommonModule,

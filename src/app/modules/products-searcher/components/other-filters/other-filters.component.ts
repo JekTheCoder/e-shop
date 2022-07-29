@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { FakeStoreService } from '@common/services/fake-store.service';
 import { FormGroupObject } from '@common/types/form-group';
@@ -15,7 +15,8 @@ type OtherFiltersFormGroup = FormGroupObject<OtherFilters>;
 })
 export class OtherFiltersComponent implements OnInit, OnDestroy {
 
-  @Output() otherFiltersChanges = new EventEmitter<OtherFilters>();
+  @Input() set otherFilters(filters: OtherFilters) { this.form.setValue(filters); }
+  @Output() otherFiltersChange = new EventEmitter<OtherFilters>();
 
   form = new FormGroup<OtherFiltersFormGroup>({
     categories: new FormControl<string[]>([], { nonNullable: true }),
@@ -35,7 +36,7 @@ export class OtherFiltersComponent implements OnInit, OnDestroy {
 
     this.form.valueChanges
       .pipe(debounceTime(300), takeUntil(this.unsuscriber$))
-      .subscribe(this.otherFiltersChanges);
+      .subscribe(this.otherFiltersChange);
   }
 
   ngOnDestroy(): void {

@@ -2,7 +2,7 @@
 
 <div class="grid">
     <div class="left">
-        <app-other-filters (otherFiltersChanges)="addFilters($event)"></app-other-filters>
+        <app-other-filters (otherFiltersChange)="addFilters($event)" [otherFilters]="((filters$ | async) || {}) | removeFilter"></app-other-filters>
     </div>
     <div class="center">
         <div class="up">

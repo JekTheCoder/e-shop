@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ItemShopComponent } from './item-shop.component';
 
 import { QuestionComponent } from '../question/question.component';
-import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { StarRatingComponent } from '@common/components/star-rating/star-rating.component';
 import { NgLetDirective } from '@common/directives/ng-let.directive';
 
 describe('ItemShopComponent', () => {
@@ -14,8 +14,8 @@ describe('ItemShopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemShopComponent, QuestionComponent, StarRatingComponent ],
-      imports: [ HttpClientTestingModule, RouterTestingModule, NgLetDirective ]
+      declarations: [ ItemShopComponent, QuestionComponent ],
+      imports: [ HttpClientTestingModule, RouterTestingModule, NgLetDirective, StarRatingComponent ]
     })
     .compileComponents();
 
