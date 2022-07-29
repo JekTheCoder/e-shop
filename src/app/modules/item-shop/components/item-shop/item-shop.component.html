@@ -5,8 +5,10 @@
         <div id="mid">
             <h2>{{ product.title }}</h2>
             <app-star-rating [points]="product.rating.rate" [count]="product.rating.count"></app-star-rating>
-            <p class="mt"><b>Category:</b><span> {{ product.category | titlecase }}</span></p>
-
+            <p class="mt">
+                <b>Category:</b>&nbsp;
+                <a routerLink="/search" [queryParams]="{ categories: product.category }">{{ product.category | titlecase }}</a>
+            </p>
             <h4 class="mt">About this product</h4>
             <p>{{ product.description }}</p>
 

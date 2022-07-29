@@ -18,6 +18,13 @@
         max-width: 100%;
     }
 
+    #mid {
+        a {
+            color: unset;
+            text-decoration: none;
+        }
+    }
+
     #last {
         padding: 20px;
         .card {
