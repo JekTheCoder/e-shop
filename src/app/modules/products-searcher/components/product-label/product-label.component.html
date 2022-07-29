@@ -3,5 +3,6 @@
 </div>
 <div class="right">
     <b>{{ product.title }}</b>
+    <p><app-star-rating [points]="product.rating.rate" [count]="product.rating.count"></app-star-rating></p>
     <p>{{ product.price | currency:'USD' }}</p>
 </div>

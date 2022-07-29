@@ -13,6 +13,7 @@ import { ProductsSearcherComponent } from './components/products-searcher/produc
 import { OtherFiltersComponent } from './components/other-filters/other-filters.component';
 import { ProductLabelComponent } from './components/product-label/product-label.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { StarRatingComponent } from '@common/components/star-rating/star-rating.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatIconModule,
     MatButtonModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    StarRatingComponent
   ]
 })
 export class ProductsSearcherModule { }
