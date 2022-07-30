@@ -2,7 +2,7 @@
 @use './app-theme.scss' as app-theme;
 
 @import '~@angular/material/theming';
-@import 'colors.scss';
+@import './theme/colors.scss';
 
 @include mat.core();
 
