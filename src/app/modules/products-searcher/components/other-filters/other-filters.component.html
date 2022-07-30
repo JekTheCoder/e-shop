@@ -7,12 +7,12 @@
     <div formArrayName="priceRange">
         <mat-form-field>
             <mat-label>Min Price: </mat-label>
-            <input matInput formControlName="0" type="number">
+            <input matInput formControlName="0" type="number" min="0" step="100">
         </mat-form-field>
 
         <mat-form-field>
             <mat-label>Max Price</mat-label>
-            <input matInput formControlName="1" type="number">
+            <input matInput formControlName="1" type="number" min="0" step="100">
         </mat-form-field>
     </div>
 </form>

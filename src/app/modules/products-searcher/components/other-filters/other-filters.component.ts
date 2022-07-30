@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { FakeStoreService } from '@common/services/fake-store.service';
 import { FormGroupObject } from '@common/types/form-group';
 import { debounceTime, Observable, Subject, takeUntil } from 'rxjs';
@@ -21,8 +21,8 @@ export class OtherFiltersComponent implements OnInit, OnDestroy {
   form = new FormGroup<OtherFiltersFormGroup>({
     categories: new FormControl<string[]>([], { nonNullable: true }),
     priceRange: new FormArray([
-      new FormControl(0),
-      new FormControl<number | null>(null)
+      new FormControl(0, Validators.min(0)),
+      new FormControl<number | null>(null, Validators.min(0))
     ])
   })
 

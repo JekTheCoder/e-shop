@@ -1,0 +1,17 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin theme($material-theme) {
+    $color-config: mat.get-color-config($material-theme);
+    $is-dark-theme:   map.get($color-config, 'is-dark');
+
+    $color: unset;
+
+    @if $is-dark-theme {
+        $color: #fff;
+    }
+
+    app-other-filters form  {
+        color: $color;
+    }
+}
