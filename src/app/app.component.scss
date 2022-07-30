@@ -47,13 +47,24 @@ header {
         }
     }
 
-    > div:nth-child(2) {
+    > .menu-buttons {
         $input-size: 20px;
         margin: math.div($height - $input-size, 2) 0;
         padding: 0 math.div($input-size, 2);
         position: relative;
 
-        
+        display: flex;
+
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+
+            transition: color .2s ease-in-out;
+
+            >* {
+                margin: 0 5px;
+            }
+        }
     }
 }
 

@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initTheme$ = this.darkTheme.getObs().pipe(take(1));
+    this.darkThemed$ = this.darkTheme.getObs();
   }
 
   redirectToSearch(search: string) {

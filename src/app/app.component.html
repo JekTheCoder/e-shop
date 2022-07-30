@@ -4,12 +4,12 @@
             <h1>E-Shop</h1>
         </a>
     </div>
-    <div class="">
-        <div class="">
+    <div class="menu-buttons">
+        <app-product-input [opened]="false" (valueChange)="redirectToSearch($event)"></app-product-input>
+        <div class="dark-mode-toggle">
+            <mat-icon> {{ (darkThemed$ | async) ? 'dark_mode' : 'light_mode' }} </mat-icon>
             <mat-slide-toggle color="accent" (change)="darkTheme.setDarkTheme($event.checked)" [checked]="initTheme$ | async"></mat-slide-toggle>
         </div>
-
-        <app-product-input [opened]="false" (valueChange)="redirectToSearch($event)"></app-product-input>
     </div>
 </header>
 <main>

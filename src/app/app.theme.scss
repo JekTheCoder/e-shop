@@ -6,12 +6,23 @@
 
     $primary-palette: map.get($color-config, 'primary');
     $accent-palette: map.get($color-config, 'accent');
+    $is-dark-mode: map.get($color-config, 'is-dark');
+
+    $color: #000;
+
+    @if $is-dark-mode {
+        $color: #fff;
+    }
 
     app-root {
         header {
             &:hover {
                 background-color: mat.get-color-from-palette($primary-palette);
-            }   
+            }
+
+            .dark-mode-toggle {
+                color: $color;
+            }
         }
 
         footer {
