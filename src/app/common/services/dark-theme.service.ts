@@ -11,7 +11,9 @@ export class DarkThemeService {
   protected renderer = inject(RendererFactory2).createRenderer(null, null);
 
   constructor() {
-    this.darkThemed$.next(this.detectBoleean(localStorage.getItem(this.itemKey)));
+    const isDarkTheme = this.detectBoleean(localStorage.getItem(this.itemKey));
+
+    this.setDarkTheme(isDarkTheme);
   }
 
   private detectBoleean(bool?: string | null): boolean {

@@ -12,7 +12,7 @@
         <app-product-input [opened]="false" (valueChange)="redirectToSearch($event)"></app-product-input>
     </div>
 </header>
-<main [ngClass]="{ 'dark-theme': (darkThemed$ | async) }">
+<main>
     <router-outlet></router-outlet>    
 </main>
 <footer>
