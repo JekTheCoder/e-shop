@@ -9,7 +9,7 @@ export class ProductFilterService {
   constructor() { }
 
   filterByTitle(product: Product, title: string = ''): boolean {
-    return product.title.includes(title.toLowerCase())
+    return product.title.toLowerCase().includes(title.toLowerCase())
   }
 
   filterByCategory(product: Product, categories?: string[]): boolean {
