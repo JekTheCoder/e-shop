@@ -27,16 +27,11 @@ export class IndexComponent implements OnInit {
   items$?: Observable<Item[]>;
   itemsShown?: Observable<number>;
 
-  darkTheme$?: Observable<boolean>;
-
   constructor(
     private store: FakeStoreService,
-    protected dark: DarkThemeService
     ) { }
 
   ngOnInit(): void {
-    this.darkTheme$ = this.dark.getObs();
-
     this.items$ = 
       this.store.getSomeProducts(0)
         .pipe(

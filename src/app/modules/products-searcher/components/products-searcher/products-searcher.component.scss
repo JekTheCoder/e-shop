@@ -1,11 +1,5 @@
-:root {
-    --window-break: 1000px;
-}
-
-$window-break: var(--window-break);
-
 .mt {
-    margin-top: 70px;
+    padding: 35px;
 }
 
 .container {
@@ -20,12 +14,18 @@ $window-break: var(--window-break);
     .left {
         >* {
             position: sticky;
-            top: 40px;
+            top: 70px;
         }
     }
 
     .up {
         margin-bottom: 40px;
+    }
+
+    .products {
+        >* {
+            margin: 20px 0;
+        }
     }
 }
 

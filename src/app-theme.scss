@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use "app/app.theme.scss" as app;
+
+@use 'app/modules/main/components/index/index.component.theme.scss' as index;
+@use 'app/modules/main/components/item-card/item-card.theme' as item-card;
+@use 'app/modules/item-shop/components/item-shop/item-shop.theme' as item-shop;
+@use 'app/modules/products-searcher/components/product-label/product-label.theme' as product-label;
+
+@mixin theme($material-theme, $app-theme) {
+
+    $background-palette: map.get($app-theme, 'background');
+    background-color: mat.get-color-from-palette($background-palette);
+
+    @include app.theme($material-theme);
+    @include index.theme($material-theme);
+    @include item-card.theme($material-theme, $app-theme);
+    @include item-shop.theme($material-theme);
+    @include product-label.theme($material-theme, $app-theme);
+}

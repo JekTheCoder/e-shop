@@ -1,6 +1,4 @@
 @use 'sass:math' as math;
-@use '@angular/material' as mat;
-@import 'theme-variables';
 
 :host {
     width: 100%;
@@ -8,7 +6,6 @@
 }
 
 header {
-    $background-color: mat.get-color-from-palette($primary-palette);
 
     position: fixed;
     top: 0; 
@@ -22,9 +19,6 @@ header {
     justify-content: space-between;
 
     transition: background-color .2s;
-    &:hover {
-        background-color: $background-color;
-    }
 
     .title {
         padding: 5px;
@@ -63,18 +57,10 @@ header {
 main {
     min-height: 90vh;
 
-    
     transition: background-color .2s ease-in-out;
-    background-color: mat.get-color-from-palette($background-palette);
-
-    &.dark-theme {
-        background-color: mat.get-color-from-palette($dark-background-palette);
-    }
 }
 
 footer {
-    $background-color: mat.get-color-from-palette($accent-palette);
-    background-color: $background-color;
     height: 100px;
 
     display: flex;

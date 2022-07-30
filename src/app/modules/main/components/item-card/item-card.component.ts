@@ -21,12 +21,9 @@ export class ItemCardComponent implements OnInit {
     src: ''
   }
 
-  darkThemed$?: Observable<boolean>;
-
-  constructor(protected dark: DarkThemeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.darkThemed$ = this.dark.getObs();
   }
 
 }

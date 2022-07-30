@@ -14,18 +14,13 @@ export class ItemShopComponent implements OnInit {
   product$?: Observable<Product | null>;
   questions$?: Observable<Question[]>;
 
-  darkThemed$?: Observable<boolean>;
-
   constructor(
     protected fs: FakeStoreService,
     protected route: ActivatedRoute,
     protected router: Router,
-    protected dark: DarkThemeService
   ) { }
 
   ngOnInit(): void {
-    this.darkThemed$ = this.dark.getObs();
-
     this.route.paramMap.pipe(
        tap(params => {
           const idStr = params.get('itemId');

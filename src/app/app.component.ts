@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DarkThemeService } from '@common/services/dark-theme.service';
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     protected router: Router,
-    protected darkTheme: DarkThemeService
+    protected darkTheme: DarkThemeService,
   ) {}
 
   ngOnInit(): void {

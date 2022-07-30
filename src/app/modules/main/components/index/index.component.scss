@@ -1,6 +1,3 @@
-@use '@angular/material' as mat;
-@import 'theme-variables.scss';
-
 section {
     width: 100%;
     position: relative;
@@ -27,15 +24,9 @@ section {
 .separator {
     height: 10px;
     width: 100%;
-
-    background-color: mat.get-color-from-palette($primary-palette);
 }
 
 #second-section {
-    &.dark-theme {
-        color: #fff;
-    }
-
     padding: 20px;
     >h3 {
         font-size: 4vw;
@@ -43,7 +34,7 @@ section {
     }
 
     >.carousel {
-        height: 450px;
+        height: 470px;
 
         app-carousel-item {
             padding: 30px 10px;

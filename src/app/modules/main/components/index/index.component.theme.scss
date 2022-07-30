@@ -8,9 +8,15 @@
     $warn-palette:    map.get($color-config, 'warn');
     $is-dark-theme:   map.get($color-config, 'is-dark');
 
-    app-component {
-      header {
+    app-index {
+      .separator {
         background-color: mat.get-color-from-palette($primary-palette);
+      }
+
+      #second-section button {
+        @if $is-dark-theme {
+          color: #fff;
+        }
       }
     }
 }

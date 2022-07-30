@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 
 @Injectable({
@@ -8,6 +8,7 @@ export class DarkThemeService {
   protected readonly itemKey = "isDarkThemed";
 
   protected darkThemed$ = new ReplaySubject<boolean>();
+  protected renderer = inject(RendererFactory2).createRenderer(null, null);
 
   constructor() {
     this.darkThemed$.next(this.detectBoleean(localStorage.getItem(this.itemKey)));
@@ -18,6 +19,11 @@ export class DarkThemeService {
   }
 
   setDarkTheme(darkTheme = true) {
+    
+    darkTheme ?
+    this.renderer.addClass(document.body, 'dark-theme') :
+    this.renderer.removeClass(document.body, 'dark-theme');
+
     this.darkThemed$.next(darkTheme);
     localStorage.setItem(this.itemKey, darkTheme ? "true" : "false");
   }

@@ -1,6 +1,6 @@
 <div class="separator"></div>
 <div class="container">
-    <div class="grid" *ngIf="product$ | async as product" [ngClass]="{ 'dark-theme': (darkThemed$ | async) }">
+    <div class="grid" *ngIf="product$ | async as product">
         <div class="img">
             <img [src]="product.image" [alt]="product.title">
         </div>

@@ -35,7 +35,6 @@
               "src/theme.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/theme"]
             },
             "scripts": []
           },
@@ -107,7 +106,6 @@
               "src/theme.scss"
             ],
             "stylePreprocessorOptions": {
-              "includePaths": ["src/theme"]
             },
             "scripts": []
           }

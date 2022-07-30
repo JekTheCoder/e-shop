@@ -1,0 +1,27 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin theme($material-theme, $app-theme) {
+    $color-config: mat.get-color-config($material-theme);
+    $is-dark-theme:   map.get($color-config, 'is-dark');
+    $background-palette: map.get($app-theme, 'background');
+
+    $shadow-color: #000;
+    $color: unset;
+    $background-color: mat.get-color-from-palette($background-palette, 50);
+
+    @if $is-dark-theme {
+        $shadow-color: #fff;
+        $color: #fff;
+        $background-color: mat.get-color-from-palette($background-palette, 700);
+    }
+
+    app-item-card >a {
+        color: $color;
+        background-color: $background-color;
+        
+        &:hover {
+            box-shadow: 0 0 12px -4px $shadow-color;
+        }
+    }
+}

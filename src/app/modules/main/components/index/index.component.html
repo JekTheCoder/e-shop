@@ -18,7 +18,7 @@
 
 <div class="separator"></div>
 
-<section id="second-section" [ngClass]="{'dark-theme': (darkTheme$ | async)}">
+<section id="second-section">
     <h3>HOT SALE</h3>
     <app-free-carousel #freeCarousel class="carousel" [delay]="false" *ngIf="items$ | async as items" [steps]="3">
         <app-carousel-item *ngFor="let item of items">
