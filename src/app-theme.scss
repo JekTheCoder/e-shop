@@ -6,6 +6,7 @@
 @use 'app/modules/main/components/item-card/item-card.theme' as item-card;
 @use 'app/modules/item-shop/components/item-shop/item-shop.theme' as item-shop;
 @use 'app/modules/products-searcher/components/product-label/product-label.theme' as product-label;
+@use 'app/app/components/not-found/not-found.theme' as not-found;
 
 @mixin theme($material-theme, $app-theme) {
 
@@ -17,4 +18,5 @@
     @include item-card.theme($material-theme, $app-theme);
     @include item-shop.theme($material-theme);
     @include product-label.theme($material-theme, $app-theme);
+    @include not-found.theme($material-theme);
 }
