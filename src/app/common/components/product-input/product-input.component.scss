@@ -1,4 +1,10 @@
 $input-size: 30px;
+$position-correction: 13px;
+
+:host {
+    position: relative;
+    margin-right: $position-correction;
+}
 
 .input-container {
     background-color: #fff;
@@ -18,7 +24,7 @@ $input-size: 30px;
 
 .custom-button {
     position: absolute;
-    right: -2px;
+    right: $position-correction * -1;
     top: 0;
     bottom: 0;
 
