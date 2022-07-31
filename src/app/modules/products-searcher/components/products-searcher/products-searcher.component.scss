@@ -32,7 +32,12 @@
 @media (max-width: 1020px) {
     .grid {
         grid-template-columns: 100%;
-        grid-template-rows: auto 1fr 1fr;
+        grid-template-rows: auto 1fr auto;
+
+        .left>* {
+            top: unset;
+            position: relative;
+        }
 
         ::ng-deep .left>app-other-filters {
             form {
